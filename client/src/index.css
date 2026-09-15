@@ -70,17 +70,18 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 /* Typography hierarchy: titles bold, supporting labels medium, running copy light. */
 p { font-weight: 300 !important; }
 h1, h2, h3 { font-weight: 700 !important; letter-spacing: 0.018em !important; }
-.eyebrow, .brand, .desktop-nav button, .contact-link, .mobile-menu button, .button, .text-link,
+.brand, .desktop-nav button, .contact-link, .mobile-menu button, .button, .text-link,
 .division-english, .division-topline, .value-number, .panel-kicker, .article-meta,
 .contact-form label, .email-link, .footer-top > p, .footer-bottom { font-weight: 500 !important; }
+.eyebrow { font-weight: 300 !important; }
 .statement-copy .lead, .panel-quote { font-weight: 500 !important; }
 .signature-row b, .hero-slogan strong { font-weight: 700 !important; }
 
 .site-shell { overflow: hidden; background: var(--cream); }
 .container { width: min(100% - 48px, 1280px); margin: 0 auto; }
-.eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 18px; color: #607281; font-family: "DM Sans", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
-.eyebrow span { display: inline-block; width: 26px; height: 1px; background: var(--gold); }
-.eyebrow.light { color: rgba(255,255,255,.68); }
+.eyebrow { display: block; margin: 0 0 14px; color: #607281; font-family: "Open Sans Condensed", Arial, sans-serif; font-size: clamp(39px, 4.6vw, 67px); font-weight: 300; letter-spacing: .01em; line-height: .98; text-transform: none; }
+.eyebrow span { display: none; }
+.eyebrow.light { color: rgba(255,255,255,.78); }
 h1, h2, h3, p { margin-top: 0; }
 h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); font-weight: 800; line-height: .98; letter-spacing: -.055em; }
 

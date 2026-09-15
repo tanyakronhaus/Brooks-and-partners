@@ -136,7 +136,6 @@ export default function Home() {
           <div className="hero-overlay" />
           <div className="hero-inner container">
             <div className="hero-copy reveal">
-              <p className="eyebrow light"><span /> פלטפורמה ציבורית רב־תחומית</p>
               <h1 id="hero-heading">
                 צומחים קדימה.<br />
                 <em>ביחד.</em>
@@ -146,16 +145,6 @@ export default function Home() {
                 <button className="button button-gold" onClick={() => navigate("about")}>הכירו את BROOKS <ArrowDownLeft size={18} /></button>
                 <button className="button button-ghost" onClick={() => navigate("divisions")}>תחומי הפעילות שלנו <ChevronLeft size={18} /></button>
               </div>
-            </div>
-
-            <div className="hero-slogan">
-              <span className="slogan-rule" />
-              <p>GLOBAL COOPERATION,<br /><strong>BUILT ON TRUST.</strong></p>
-            </div>
-
-            <div className="hero-scroll" aria-hidden="true">
-              <span>גלו עוד</span>
-              <i />
             </div>
           </div>
         </section>
