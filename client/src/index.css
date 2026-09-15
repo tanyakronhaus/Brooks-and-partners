@@ -69,7 +69,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Typography hierarchy: titles bold, supporting labels medium, running copy light. */
 p { font-weight: 300 !important; }
-h1, h2, h3 { font-weight: 700 !important; }
+h1, h2, h3 { font-weight: 700 !important; letter-spacing: 0.018em !important; }
 .eyebrow, .brand, .desktop-nav button, .contact-link, .mobile-menu button, .button, .text-link,
 .division-english, .division-topline, .value-number, .panel-kicker, .article-meta,
 .contact-form label, .email-link, .footer-top > p, .footer-bottom { font-weight: 500 !important; }
