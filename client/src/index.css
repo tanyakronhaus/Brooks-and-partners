@@ -234,7 +234,8 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
   .hero, .hero-inner { min-height: 690px; }
   .hero-inner { padding-top: 146px; }
   .hero-copy { margin-right: 0; }
-  .hero-overlay { background: linear-gradient(90deg, rgba(4,24,42,.1) 0%, rgba(4,24,42,.4) 60%, rgba(4,24,42,.68) 100%), linear-gradient(0deg, rgba(4,24,42,.55) 0%, transparent 50%); }
+  .hero-overlay { background: linear-gradient(180deg, rgba(255,250,238,.66) 0%, rgba(255,250,238,.56) 49%, rgba(255,250,238,.34) 76%, rgba(4,24,42,.18) 100%), linear-gradient(90deg, rgba(255,250,238,.28) 0%, rgba(255,250,238,.14) 55%, rgba(4,24,42,.05) 100%); }
+  .hero-description { color: var(--navy); font-weight: 400 !important; text-shadow: 0 1px 15px rgba(255,250,238,.75); }
   .statement-grid, .partners-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
   .statement-copy { padding-top: 0; }
   .section-heading-row { grid-template-columns: 1fr; }
