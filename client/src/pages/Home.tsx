@@ -23,7 +23,7 @@ const divisions = [
     title: "נדל״ן",
     english: "REAL ESTATE",
     copy: "ייזום, השבחה וניהול נכסים באזורים בעלי פוטנציאל, מתוך ראייה ארוכת טווח של איכות, קיימות וקהילה.",
-    image: "/manus-storage/real-estate_0f6456e5.jpg",
+    image: "/assets/images/real-estate.jpg",
     icon: Building2,
   },
   {
@@ -31,7 +31,7 @@ const divisions = [
     title: "אנרגיה",
     english: "ENERGY",
     copy: "קידום תשתיות אנרגיה מתחדשת ופתרונות יעילים המשלבים צמיחה עסקית עם אחריות סביבתית.",
-    image: "/manus-storage/energy_2eea6369.jpg",
+    image: "/assets/images/energy.jpg",
     icon: Leaf,
   },
   {
@@ -39,7 +39,7 @@ const divisions = [
     title: "ביטחון וטכנולוגיה",
     english: "DEFENSE & TECHNOLOGY",
     copy: "השקעה ביכולות טכנולוגיות מתקדמות ובשותפויות המאפשרות מענה מדויק לאתגרי העתיד.",
-    image: "/manus-storage/defense_0c5f1240.jpg",
+    image: "/assets/images/defense.jpg",
     icon: ShieldCheck,
   },
 ];

@@ -1,27 +1,27 @@
 @font-face {
   font-family: "Open Sans Condensed";
-  src: url("/manus-storage/OpenSans_Condensed-Light-BF63e1a1cd84ef9_42345a96.ttf") format("truetype");
+  src: url("/assets/fonts/OpenSans_Condensed-Light-BF63e1a1cd84ef9.ttf") format("truetype");
   font-style: normal;
   font-weight: 300;
   font-display: swap;
 }
 @font-face {
   font-family: "Open Sans Condensed";
-  src: url("/manus-storage/OpenSans_Condensed-Regular-BF63e1a1ce90b98_222b5615.ttf") format("truetype");
+  src: url("/assets/fonts/OpenSans_Condensed-Regular-BF63e1a1ce90b98.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: "Open Sans Condensed";
-  src: url("/manus-storage/OpenSans_Condensed-Medium-BF63e1a1cdd5953_6489fdc5.ttf") format("truetype");
+  src: url("/assets/fonts/OpenSans_Condensed-Medium-BF63e1a1cdd5953.ttf") format("truetype");
   font-style: normal;
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
   font-family: "Open Sans Condensed";
-  src: url("/manus-storage/OpenSans_Condensed-Bold-BF63e1a1cb31485_f6739aac.ttf") format("truetype");
+  src: url("/assets/fonts/OpenSans_Condensed-Bold-BF63e1a1cb31485.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -106,7 +106,7 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 
 .hero { position: relative; min-height: 770px; color: white; background: var(--navy); }
 .hero-media, .hero-overlay { position: absolute; inset: 0; }
-.hero-media { background: url("/manus-storage/hero-coastal-city_45c90238.jpg") center center / cover no-repeat; transform: scale(1.01); }
+.hero-media { background: url("/assets/images/hero-coastal-city.jpg") center center / cover no-repeat; transform: scale(1.01); }
 .hero-overlay { background: linear-gradient(90deg, rgba(255,250,238,.33) 0%, rgba(255,250,238,.15) 36%, rgba(4,24,42,.12) 61%, rgba(4,24,42,.5) 100%), linear-gradient(0deg, rgba(4,24,42,.48) 0%, transparent 34%); }
 .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 770px; padding-top: 174px; padding-bottom: 42px; }
 .hero-copy { max-width: 600px; margin-right: auto; }
