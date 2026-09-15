@@ -100,7 +100,7 @@ export default function Home() {
         <div className="topbar-inner">
           <a className="brand" href="#top" aria-label="BROOKS & PARTNERS — דף הבית" onClick={() => navigate("top")}>
             <span className="brand-main">BROOKS</span>
-            <span className="brand-sub">&amp; PARTNERS</span>
+            <span className="brand-sub"><bdi>&amp; PARTNERS</bdi></span>
           </a>
 
           <nav className="desktop-nav" aria-label="ניווט ראשי">
@@ -294,7 +294,7 @@ export default function Home() {
 
       <footer className="footer">
         <div className="container footer-top">
-          <a className="brand footer-brand" href="#top" onClick={() => navigate("top")}><span className="brand-main">BROOKS</span><span className="brand-sub">&amp; PARTNERS</span></a>
+          <a className="brand footer-brand" href="#top" onClick={() => navigate("top")}><span className="brand-main">BROOKS</span><span className="brand-sub"><bdi>&amp; PARTNERS</bdi></span></a>
           <p>GLOBAL COOPERATION, BUILT ON TRUST.</p>
           <div className="footer-links"><a href="#about" onClick={(event) => { event.preventDefault(); navigate("about"); }}>אודות</a><a href="#divisions" onClick={(event) => { event.preventDefault(); navigate("divisions"); }}>פעילות</a><a href="#contact" onClick={(event) => { event.preventDefault(); navigate("contact"); }}>צור קשר</a></div>
         </div>
