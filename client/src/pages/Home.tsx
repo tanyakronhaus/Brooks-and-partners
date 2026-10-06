@@ -316,10 +316,11 @@ export default function Home() {
 
   return (
     <div className={`site-shell language-${language}`} dir={isHebrew ? "rtl" : "ltr"}>
-      <header className={`topbar ${scrolled ? "topbar-scrolled" : ""}`}>
+      <header className={`topbar ${scrolled ? "topbar-scrolled" : "topbar-at-top"}`}>
         <div className="topbar-inner">
           <a className="brand" href="#top" aria-label={t.homeAria} onClick={() => navigate("top")}>
-            <img className="brand-logo" src="/assets/images/brooks-partners-logo.png" alt="BROOKS & PARTNERS" />
+            <img className="brand-logo brand-logo-navy" src="/assets/images/brooks-partners-logo.png" alt="BROOKS & PARTNERS" />
+            <img className="brand-logo brand-logo-white" src="/assets/images/brooks-partners-logo-white.png" alt="" aria-hidden="true" />
           </a>
 
           <nav className="desktop-nav" aria-label="Primary navigation">
@@ -351,9 +352,8 @@ export default function Home() {
       </div>
 
       <main id="top">
-        <section className="hero" aria-labelledby="hero-heading">
-          <div className="hero-media" />
-          <div className="hero-video-frame">
+        <section className="video-hero" aria-label="BROOKS & PARTNERS film">
+          <div className="video-hero-frame">
             <video
               ref={videoRef}
               autoPlay
@@ -368,6 +368,19 @@ export default function Home() {
               <source src="/assets/videos/brooks-and-partners.mp4" type="video/mp4" />
             </video>
           </div>
+          <div className="video-hero-shade" />
+          <div className="video-hero-controls">
+            <button type="button" onClick={toggleMute} aria-label={isMuted ? t.video.unmute : t.video.mute} title={isMuted ? t.video.unmute : t.video.mute}>
+              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+            </button>
+            <button type="button" onClick={togglePlayback} aria-label={isPaused ? t.video.play : t.video.pause} title={isPaused ? t.video.play : t.video.pause}>
+              {isPaused ? <Play size={18} fill="currentColor" /> : <Pause size={18} />}
+            </button>
+          </div>
+        </section>
+
+        <section className="hero" aria-labelledby="hero-heading">
+          <div className="hero-media" />
           <div className="hero-overlay" />
           <div className="hero-inner container">
             <div className="hero-copy reveal">
@@ -381,14 +394,6 @@ export default function Home() {
                 <button className="button button-ghost" onClick={() => navigate("divisions")}>{t.hero.secondary} <DirectionChevron size={18} /></button>
               </div>
             </div>
-          </div>
-          <div className="hero-video-controls">
-            <button type="button" onClick={toggleMute} aria-label={isMuted ? t.video.unmute : t.video.mute} title={isMuted ? t.video.unmute : t.video.mute}>
-              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-            </button>
-            <button type="button" onClick={togglePlayback} aria-label={isPaused ? t.video.play : t.video.pause} title={isPaused ? t.video.play : t.video.pause}>
-              {isPaused ? <Play size={18} fill="currentColor" /> : <Pause size={18} />}
-            </button>
           </div>
         </section>
 
