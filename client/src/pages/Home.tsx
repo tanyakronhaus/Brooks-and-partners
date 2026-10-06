@@ -525,7 +525,7 @@ export default function Home() {
 
       <footer className="footer">
         <div className="container footer-top">
-          <a className="brand footer-brand" href="#top" aria-label={t.homeAria} onClick={() => navigate("top")}><img className="brand-logo" src="/assets/images/brooks-partners-logo.png" alt="BROOKS & PARTNERS" /></a>
+          <a className="brand footer-brand" href="#top" aria-label={t.homeAria} onClick={() => navigate("top")}><img className="brand-logo" src="/assets/images/brooks-partners-logo-white.png" alt="BROOKS & PARTNERS" /></a>
           <p>{t.footer.tagline}</p>
           <div className="footer-links"><a href="#about" onClick={(event) => { event.preventDefault(); navigate("about"); }}>{t.footer.about}</a><a href="#divisions" onClick={(event) => { event.preventDefault(); navigate("divisions"); }}>{t.footer.activity}</a><a href="#contact" onClick={(event) => { event.preventDefault(); navigate("contact"); }}>{t.footer.contact}</a></div>
         </div>
