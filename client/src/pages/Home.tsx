@@ -353,6 +353,21 @@ export default function Home() {
       <main id="top">
         <section className="hero" aria-labelledby="hero-heading">
           <div className="hero-media" />
+          <div className="hero-video-frame">
+            <video
+              ref={videoRef}
+              autoPlay
+              muted={isMuted}
+              loop
+              playsInline
+              preload="metadata"
+              poster="/assets/videos/brooks-and-partners-poster.jpg"
+              onPlay={() => setIsPaused(false)}
+              onPause={() => setIsPaused(true)}
+            >
+              <source src="/assets/videos/brooks-and-partners.mp4" type="video/mp4" />
+            </video>
+          </div>
           <div className="hero-overlay" />
           <div className="hero-inner container">
             <div className="hero-copy reveal">
@@ -367,31 +382,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
-
-        <section className="brand-video-section" aria-label="BROOKS & PARTNERS film">
-          <div className="brand-video-frame">
-            <video
-              ref={videoRef}
-              autoPlay
-              muted={isMuted}
-              loop
-              playsInline
-              preload="metadata"
-              poster="/assets/videos/brooks-and-partners-poster.jpg"
-              onPlay={() => setIsPaused(false)}
-              onPause={() => setIsPaused(true)}
-            >
-              <source src="/assets/videos/brooks-and-partners.mp4" type="video/mp4" />
-            </video>
-            <div className="brand-video-controls">
-              <button type="button" onClick={toggleMute} aria-label={isMuted ? t.video.unmute : t.video.mute} title={isMuted ? t.video.unmute : t.video.mute}>
-                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-              </button>
-              <button type="button" onClick={togglePlayback} aria-label={isPaused ? t.video.play : t.video.pause} title={isPaused ? t.video.play : t.video.pause}>
-                {isPaused ? <Play size={18} fill="currentColor" /> : <Pause size={18} />}
-              </button>
-            </div>
+          <div className="hero-video-controls">
+            <button type="button" onClick={toggleMute} aria-label={isMuted ? t.video.unmute : t.video.mute} title={isMuted ? t.video.unmute : t.video.mute}>
+              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+            </button>
+            <button type="button" onClick={togglePlayback} aria-label={isPaused ? t.video.play : t.video.pause} title={isPaused ? t.video.play : t.video.pause}>
+              {isPaused ? <Play size={18} fill="currentColor" /> : <Pause size={18} />}
+            </button>
           </div>
         </section>
 
