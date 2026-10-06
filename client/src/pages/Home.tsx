@@ -417,6 +417,16 @@ export default function Home() {
 
         <section className="updates-section" id="updates" aria-labelledby="updates-heading">
           <div className="container">
+            <div className="desktop-office-marquee" aria-hidden="true">
+              <div className="desktop-office-marquee-track">
+                <img src="/assets/images/brooks-wall-sign.jpg" alt="" />
+                <img src="/assets/images/brooks-meeting-room.jpg" alt="" />
+                <img src="/assets/images/brooks-reception.jpg" alt="" />
+                <img src="/assets/images/brooks-wall-sign.jpg" alt="" />
+                <img src="/assets/images/brooks-meeting-room.jpg" alt="" />
+                <img src="/assets/images/brooks-reception.jpg" alt="" />
+              </div>
+            </div>
             <div className="updates-heading">
               <div>
                 <p className="eyebrow">{t.updates.eyebrow}</p>
