@@ -134,6 +134,15 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 .hero-scroll { position: absolute; bottom: 39px; left: 2px; display: flex; align-items: center; gap: 9px; color: rgba(255,255,255,.68); font-size: 12px; }
 .hero-scroll i { display: block; width: 32px; height: 1px; background: currentColor; }
 
+.brand-video-section { width: 100%; background: #071f34; }
+.brand-video-frame { position: relative; width: 100%; overflow: hidden; aspect-ratio: 16 / 9; background: #061e33; }
+.brand-video-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.brand-video-controls { position: absolute; z-index: 2; right: clamp(18px, 3vw, 42px); bottom: clamp(18px, 3vw, 42px); display: flex; gap: 8px; }
+.brand-video-controls button { display: grid; width: 42px; height: 42px; place-items: center; color: white; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: rgba(4,23,42,.34); backdrop-filter: blur(10px); transition: background-color 180ms var(--ease-out), border-color 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.brand-video-controls button:hover { border-color: white; background: rgba(4,23,42,.68); }
+.brand-video-controls button:active { transform: scale(.94); }
+.language-he .brand-video-controls { right: auto; left: clamp(18px, 3vw, 42px); }
+
 .statement-section { padding: 137px 0 132px; background: var(--paper); }
 .statement-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(60px, 11vw, 177px); align-items: start; }
 .section-intro h2 { max-width: 430px; }
@@ -346,6 +355,9 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
   .hero-inner { padding-top: 136px; padding-bottom: 30px; }
   .hero h1 { font-size: clamp(53px, 15vw, 78px); }
   .hero-description { font-size: 17px; }
+  .brand-video-controls { right: 14px; bottom: 14px; gap: 7px; }
+  .brand-video-controls button { width: 38px; height: 38px; }
+  .language-he .brand-video-controls { right: auto; left: 14px; }
   .hero-slogan { margin-top: auto; }
   .hero-scroll { display: none; }
   .statement-section, .values-section, .updates-section, .contact-section { padding: 84px 0; }
