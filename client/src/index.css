@@ -235,7 +235,7 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 .language-en .section-heading-row, .language-en .partners-copy, .language-en .contact-copy,
 .language-en .updates-heading, .language-en .article-card, .language-en .division-content,
 .language-en .value-card, .language-en .partner-panel, .language-en .contact-form { text-align: left; }
-.language-en .hero-copy { margin-right: 0; margin-left: auto; }
+.language-en .hero-copy { margin-right: auto; margin-left: 0; }
 .language-en .section-heading-row > p { text-align: left; }
 .language-en .signature-row { text-align: left; }
 .language-en .contact-form .button { justify-self: start; }
