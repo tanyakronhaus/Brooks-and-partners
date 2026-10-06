@@ -250,6 +250,23 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>(".scroll-reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -48px" },
+    );
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = isHebrew ? "rtl" : "ltr";
     document.title = isHebrew
@@ -325,14 +342,14 @@ export default function Home() {
 
         <section className="statement-section" id="about" aria-labelledby="about-heading">
           <div className="container statement-grid">
-            <div className="section-intro reveal">
+            <div className="section-intro reveal scroll-reveal">
               <p className="eyebrow">{t.about.eyebrow}</p>
               <h2 id="about-heading">{lines(t.about.heading)}</h2>
               <a href="#partners" className="text-link" onClick={(event) => { event.preventDefault(); navigate("partners"); }}>
                 {t.about.link} <DirectionArrow size={18} />
               </a>
             </div>
-            <div className="statement-copy reveal delay-1">
+            <div className="statement-copy reveal delay-1 scroll-reveal scroll-delay-1">
               <p className="lead">{t.about.lead}</p>
               <p>{t.about.copy}</p>
               <div className="signature-row">
@@ -344,7 +361,7 @@ export default function Home() {
         </section>
 
         <section className="divisions-section" id="divisions" aria-labelledby="divisions-heading">
-          <div className="container section-heading-row">
+          <div className="container section-heading-row scroll-reveal">
             <div>
               <p className="eyebrow light">{t.divisions.eyebrow}</p>
               <h2 id="divisions-heading">{lines(t.divisions.heading)}</h2>
@@ -355,7 +372,7 @@ export default function Home() {
             {t.divisions.items.map((division, index) => {
               const Icon = divisionIcons[index];
               return (
-                <article className="division-card" key={division.number}>
+                <article className={`division-card scroll-reveal scroll-delay-${index + 1}`} key={division.number}>
                   <img src={divisionImages[index]} alt="" />
                   <div className="division-shade" />
                   <div className="division-content">
@@ -375,13 +392,13 @@ export default function Home() {
 
         <section className="values-section" aria-labelledby="values-heading">
           <div className="container">
-            <div className="values-top">
+            <div className="values-top scroll-reveal">
               <p className="eyebrow">{t.values.eyebrow}</p>
               <h2 id="values-heading">{lines(t.values.heading)}</h2>
             </div>
             <div className="values-grid">
               {t.values.items.map((value) => (
-                <article className="value-card" key={value.number}>
+                <article className={`value-card scroll-reveal scroll-delay-${Number(value.number)}`} key={value.number}>
                   <span className="value-number">{value.number}</span>
                   <div className="value-line" />
                   <h3>{value.title}</h3>
@@ -395,14 +412,14 @@ export default function Home() {
         <section className="partners-section" id="partners" aria-labelledby="partners-heading">
           <div className="partners-pattern" />
           <div className="container partners-grid">
-            <div className="partners-copy">
+            <div className="partners-copy scroll-reveal">
               <figure className="atmosphere-strip atmosphere-strip-partners"><img src="/assets/images/brooks-meeting-room.jpg" alt="" /></figure>
               <p className="eyebrow light">{t.partners.eyebrow}</p>
               <h2 id="partners-heading">{lines(t.partners.heading)}</h2>
               <p>{t.partners.copy}</p>
               <button className="button button-outline-light" onClick={() => navigate("contact")}>{t.partners.button} <DirectionArrow size={18} /></button>
             </div>
-            <div className="partner-panel">
+            <div className="partner-panel scroll-reveal scroll-delay-2">
               <div className="panel-icon"><Globe2 size={26} /></div>
               <p className="panel-kicker">{t.partners.kicker}</p>
               <p className="panel-quote">{t.partners.quote}</p>
@@ -427,7 +444,7 @@ export default function Home() {
                 <img src="/assets/images/brooks-reception.jpg" alt="" />
               </div>
             </div>
-            <div className="updates-heading">
+            <div className="updates-heading scroll-reveal">
               <div>
                 <p className="eyebrow">{t.updates.eyebrow}</p>
                 <h2 id="updates-heading">{lines(t.updates.heading)}</h2>
@@ -437,7 +454,7 @@ export default function Home() {
             <figure className="atmosphere-strip atmosphere-strip-updates"><img src="/assets/images/brooks-wall-sign.jpg" alt="" /></figure>
             <div className="articles-grid">
               {t.updates.articles.map((article, index) => (
-                <article className={`article-card article-${index + 1}`} key={article.title}>
+                <article className={`article-card article-${index + 1} scroll-reveal scroll-delay-${index + 1}`} key={article.title}>
                   <div className="article-meta"><span>{article.tag}</span><time>{article.date}</time></div>
                   <h3>{article.title}</h3>
                   <p>{article.copy}</p>
@@ -450,14 +467,14 @@ export default function Home() {
 
         <section className="contact-section" id="contact" aria-labelledby="contact-heading">
           <div className="container contact-grid">
-            <div className="contact-copy">
+            <div className="contact-copy scroll-reveal">
               <p className="eyebrow light">{t.contact.eyebrow}</p>
               <h2 id="contact-heading">{lines(t.contact.heading)}</h2>
               <p>{t.contact.copy}</p>
               <figure className="atmosphere-strip atmosphere-strip-contact"><img src="/assets/images/brooks-reception.jpg" alt="" /></figure>
               <a className="email-link" href="mailto:info@brooks-partners.com"><Mail size={19} /> info@brooks-partners.com</a>
             </div>
-            <form className="contact-form" onSubmit={(event) => { event.preventDefault(); setSent(true); }}>
+            <form className="contact-form scroll-reveal scroll-delay-2" onSubmit={(event) => { event.preventDefault(); setSent(true); }}>
               <label>{t.contact.form.name}<input required placeholder={t.contact.form.namePlaceholder} /></label>
               <label>{t.contact.form.email}<input required type="email" placeholder={t.contact.form.emailPlaceholder} dir="ltr" /></label>
               <label>{t.contact.form.subject}<select key={language} defaultValue=""><option value="" disabled>{t.contact.form.subjectPlaceholder}</option><option>{t.contact.form.partnership}</option><option>{t.contact.form.investors}</option><option>{t.contact.form.general}</option></select></label>
