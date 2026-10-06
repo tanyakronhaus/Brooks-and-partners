@@ -396,10 +396,10 @@ export default function Home() {
           <div className="partners-pattern" />
           <div className="container partners-grid">
             <div className="partners-copy">
+              <figure className="atmosphere-strip atmosphere-strip-partners"><img src="/assets/images/brooks-meeting-room.jpg" alt="" /></figure>
               <p className="eyebrow light">{t.partners.eyebrow}</p>
               <h2 id="partners-heading">{lines(t.partners.heading)}</h2>
               <p>{t.partners.copy}</p>
-              <figure className="atmosphere-strip atmosphere-strip-partners"><img src="/assets/images/brooks-meeting-room.jpg" alt="" /></figure>
               <button className="button button-outline-light" onClick={() => navigate("contact")}>{t.partners.button} <DirectionArrow size={18} /></button>
             </div>
             <div className="partner-panel">
