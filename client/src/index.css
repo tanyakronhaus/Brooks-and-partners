@@ -145,6 +145,7 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 .video-hero-controls button:hover { border-color: white; background: rgba(4,23,42,.68); }
 .video-hero-controls button:active { transform: scale(.94); }
 .language-he .video-hero-controls { right: auto; left: clamp(18px, 3vw, 42px); }
+.video-hero-scroll-strip { display: none; }
 
 .statement-section { padding: 137px 0 132px; background: var(--paper); }
 .statement-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(60px, 11vw, 177px); align-items: start; }
@@ -316,7 +317,12 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 
 @media (min-width: 901px) {
   .hero { order: -1; }
-  .video-hero { min-height: 0; aspect-ratio: 16 / 9; }
+  .video-hero { min-height: 0; height: 100vh; height: 100svh; aspect-ratio: auto; }
+  .video-hero-frame, .video-hero-shade { bottom: 64px; }
+  .video-hero-controls { bottom: calc(64px + clamp(18px, 3vw, 42px)); }
+  .video-hero-scroll-strip { position: absolute; z-index: 3; right: 0; bottom: 0; left: 0; display: grid; height: 64px; place-items: center; background: var(--navy-deep); }
+  .video-hero-scroll-strip button { display: grid; width: 44px; height: 44px; place-items: center; color: rgba(255,255,255,.92); background: transparent; transition: color 180ms var(--ease-out), transform 180ms var(--ease-out); }
+  .video-hero-scroll-strip button:hover { color: white; transform: translateY(3px); }
   .topbar-at-top .brand-logo-navy { display: none; }
   .topbar-at-top .brand-logo-white { display: block; }
 }

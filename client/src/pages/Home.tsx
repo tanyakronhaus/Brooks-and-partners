@@ -6,6 +6,7 @@ import {
   Building2,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Globe2,
   Leaf,
   Mail,
@@ -31,7 +32,7 @@ const content = {
     menuOpen: "Open menu",
     menuClose: "Close menu",
     homeAria: "BROOKS & PARTNERS — Home",
-    video: { mute: "Mute video", unmute: "Unmute video", pause: "Pause video", play: "Play video" },
+    video: { mute: "Mute video", unmute: "Unmute video", pause: "Pause video", play: "Play video", scroll: "Scroll to content" },
     about: {
       eyebrow: "Who we are",
       heading: "More than a\nsingle sector.",
@@ -117,7 +118,7 @@ const content = {
     menuOpen: "פתיחת תפריט",
     menuClose: "סגירת תפריט",
     homeAria: "BROOKS & PARTNERS — דף הבית",
-    video: { mute: "השתקת הסרטון", unmute: "הפעלת צליל", pause: "השהיית הסרטון", play: "ניגון הסרטון" },
+    video: { mute: "השתקת הסרטון", unmute: "הפעלת צליל", pause: "השהיית הסרטון", play: "ניגון הסרטון", scroll: "גלילה לתוכן" },
     about: {
       eyebrow: "מי אנחנו",
       heading: "הרבה מעבר\nלתחום אחד.",
@@ -368,6 +369,11 @@ export default function Home() {
             </button>
             <button type="button" onClick={togglePlayback} aria-label={isPaused ? t.video.play : t.video.pause} title={isPaused ? t.video.play : t.video.pause}>
               {isPaused ? <Play size={18} fill="currentColor" /> : <Pause size={18} />}
+            </button>
+          </div>
+          <div className="video-hero-scroll-strip">
+            <button type="button" onClick={() => navigate("about")} aria-label={t.video.scroll} title={t.video.scroll}>
+              <ChevronDown size={24} strokeWidth={1.25} />
             </button>
           </div>
         </section>
