@@ -334,8 +334,13 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
   .lang-switch { display: inline-flex; align-items: center; justify-content: center; min-width: 37px; min-height: 30px; padding: 4px 7px; color: var(--navy); border: 1px solid rgba(9,39,68,.32); font-family: Arial, sans-serif !important; font-size: 11px; font-weight: 700 !important; letter-spacing: .03em; opacity: 1; }
   .contact-link { display: none; }
   .menu-toggle { display: grid; place-items: center; }
+  .topbar-at-top { color: white; }
+  .topbar-at-top .brand-logo-navy { display: none; }
+  .topbar-at-top .brand-logo-white { display: block; }
+  .topbar-at-top .lang-switch { color: white; border-color: rgba(255,255,255,.7); }
+  .topbar-at-top .menu-toggle { color: white; }
   .hero { order: -2; }
-  .video-hero { order: -1; min-height: 0; aspect-ratio: 16 / 9; }
+  .video-hero { order: -1; min-height: 0; aspect-ratio: 9 / 16; }
   .hero, .hero-inner { min-height: 690px; }
   .hero-inner { padding-top: 146px; }
   .hero-copy { margin-right: 0; }

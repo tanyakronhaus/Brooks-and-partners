@@ -1,7 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import {
-  ArrowDownLeft,
-  ArrowDownRight,
   ArrowUpLeft,
   ArrowUpRight,
   BadgeCheck,
@@ -33,13 +31,6 @@ const content = {
     menuOpen: "Open menu",
     menuClose: "Close menu",
     homeAria: "BROOKS & PARTNERS — Home",
-    hero: {
-      titleTop: "Moving forward.",
-      titleBottom: "Together.",
-      description: "We build global partnerships across real estate, energy and defense — creating value that lasts.",
-      primary: "Discover BROOKS",
-      secondary: "Explore our businesses",
-    },
     video: { mute: "Mute video", unmute: "Unmute video", pause: "Pause video", play: "Play video" },
     about: {
       eyebrow: "Who we are",
@@ -126,13 +117,6 @@ const content = {
     menuOpen: "פתיחת תפריט",
     menuClose: "סגירת תפריט",
     homeAria: "BROOKS & PARTNERS — דף הבית",
-    hero: {
-      titleTop: "צומחים קדימה.",
-      titleBottom: "ביחד.",
-      description: "אנו בונים שיתופי פעולה גלובליים בתחומי הנדל״ן, האנרגיה והביטחון — ומבססים ערך שנמשך לאורך זמן.",
-      primary: "הכירו את BROOKS",
-      secondary: "תחומי הפעילות שלנו",
-    },
     video: { mute: "השתקת הסרטון", unmute: "הפעלת צליל", pause: "השהיית הסרטון", play: "ניגון הסרטון" },
     about: {
       eyebrow: "מי אנחנו",
@@ -243,11 +227,11 @@ export default function Home() {
   const [sent, setSent] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
+  const [isMobileVideo, setIsMobileVideo] = useState(() => window.matchMedia("(max-width: 900px)").matches);
   const videoRef = useRef<HTMLVideoElement>(null);
   const t = content[language];
   const isHebrew = language === "he";
   const DirectionArrow = isHebrew ? ArrowUpLeft : ArrowUpRight;
-  const DownArrow = isHebrew ? ArrowDownLeft : ArrowDownRight;
   const MoveArrow = isHebrew ? MoveUpLeft : MoveUpRight;
   const DirectionChevron = isHebrew ? ChevronLeft : ChevronRight;
 
@@ -256,6 +240,14 @@ export default function Home() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 900px)");
+    const onViewportChange = () => setIsMobileVideo(mediaQuery.matches);
+    onViewportChange();
+    mediaQuery.addEventListener("change", onViewportChange);
+    return () => mediaQuery.removeEventListener("change", onViewportChange);
   }, []);
 
   useEffect(() => {
@@ -279,8 +271,8 @@ export default function Home() {
     document.documentElement.lang = language;
     document.documentElement.dir = isHebrew ? "rtl" : "ltr";
     document.title = isHebrew
-      ? "BROOKS & PARTNERS | צומחים קדימה, ביחד"
-      : "BROOKS & PARTNERS | Moving forward. Together.";
+      ? "BROOKS & PARTNERS | שיתופי פעולה גלובליים, מבוססי אמון"
+      : "BROOKS & PARTNERS | Global Cooperation, Built on Trust.";
   }, [isHebrew, language]);
 
   const navigate = (target: string) => {
@@ -352,20 +344,21 @@ export default function Home() {
       </div>
 
       <main id="top">
-        <section className="video-hero" aria-label="BROOKS & PARTNERS film">
+        <section className={`video-hero ${isMobileVideo ? "video-hero-mobile" : "video-hero-desktop"}`} aria-label="BROOKS & PARTNERS film">
           <div className="video-hero-frame">
             <video
+              key={isMobileVideo ? "mobile-video" : "desktop-video"}
               ref={videoRef}
               autoPlay
               muted={isMuted}
               loop
               playsInline
-              preload="metadata"
-              poster="/assets/videos/brooks-and-partners-poster.jpg"
+              preload="auto"
+              poster={isMobileVideo ? "/assets/videos/brooks-mobile-poster.jpg" : "/assets/videos/brooks-and-partners-poster.jpg"}
               onPlay={() => setIsPaused(false)}
               onPause={() => setIsPaused(true)}
             >
-              <source src="/assets/videos/brooks-and-partners.mp4" type="video/mp4" />
+              <source src={isMobileVideo ? "/assets/videos/brooks-mobile.mp4" : "/assets/videos/brooks-and-partners.mp4"} type="video/mp4" />
             </video>
           </div>
           <div className="video-hero-shade" />
@@ -376,24 +369,6 @@ export default function Home() {
             <button type="button" onClick={togglePlayback} aria-label={isPaused ? t.video.play : t.video.pause} title={isPaused ? t.video.play : t.video.pause}>
               {isPaused ? <Play size={18} fill="currentColor" /> : <Pause size={18} />}
             </button>
-          </div>
-        </section>
-
-        <section className="hero" aria-labelledby="hero-heading">
-          <div className="hero-media" />
-          <div className="hero-overlay" />
-          <div className="hero-inner container">
-            <div className="hero-copy reveal">
-              <h1 id="hero-heading">
-                {t.hero.titleTop}<br />
-                <em>{t.hero.titleBottom}</em>
-              </h1>
-              <p className="hero-description">{t.hero.description}</p>
-              <div className="hero-buttons">
-                <button className="button button-gold" onClick={() => navigate("about")}>{t.hero.primary} <DownArrow size={18} /></button>
-                <button className="button button-ghost" onClick={() => navigate("divisions")}>{t.hero.secondary} <DirectionChevron size={18} /></button>
-              </div>
-            </div>
           </div>
         </section>
 
