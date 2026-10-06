@@ -1,86 +1,246 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   ArrowDownLeft,
+  ArrowDownRight,
   ArrowUpLeft,
+  ArrowUpRight,
   BadgeCheck,
-  BarChart3,
   Building2,
   ChevronLeft,
+  ChevronRight,
   Globe2,
   Leaf,
   Mail,
   Menu,
   MoveUpLeft,
+  MoveUpRight,
   Network,
   ShieldCheck,
-  Sparkles,
   X,
 } from "lucide-react";
 
-const divisions = [
-  {
-    number: "01",
-    title: "נדל״ן",
-    english: "REAL ESTATE",
-    copy: "ייזום, השבחה וניהול נכסים באזורים בעלי פוטנציאל, מתוך ראייה ארוכת טווח של איכות, קיימות וקהילה.",
-    image: "/assets/images/real-estate.jpg",
-    icon: Building2,
+type Language = "en" | "he";
+
+const content = {
+  en: {
+    nav: { about: "About", divisions: "Our Businesses", partners: "Partnerships", updates: "Updates", contact: "Contact us" },
+    switchLabel: "עברית",
+    switchAria: "Switch to Hebrew",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+    homeAria: "BROOKS & PARTNERS — Home",
+    hero: {
+      titleTop: "Moving forward.",
+      titleBottom: "Together.",
+      description: "We build global partnerships across real estate, energy and defense — creating value that lasts.",
+      primary: "Discover BROOKS",
+      secondary: "Explore our businesses",
+    },
+    about: {
+      eyebrow: "Who we are",
+      heading: "More than a\nsingle sector.",
+      link: "Explore our approach",
+      lead: "BROOKS & PARTNERS is a public platform operating at the intersection of opportunity, expertise and people.",
+      copy: "We identify growth engines, connect leading partners and guide complex initiatives from the first idea to enduring value. Our approach rests on rigorous planning, agile thinking and a deep commitment to trust.",
+      signature: "Three businesses. One perspective.",
+      signatureStrong: "Growing together, responsibly.",
+    },
+    divisions: {
+      eyebrow: "Our growth engines",
+      heading: "Focused on what\nmoves tomorrow.",
+      intro: "Our work connects assets, infrastructure and technology to create a resilient foundation for growth in a changing world.",
+      detailsAria: "Learn more about",
+      items: [
+        { number: "01", label: "REAL ESTATE", title: "Real Estate", copy: "Development, enhancement and asset management in high-potential locations, guided by a long-term view of quality, sustainability and community." },
+        { number: "02", label: "ENERGY", title: "Energy", copy: "Advancing renewable-energy infrastructure and efficient solutions that combine commercial growth with environmental responsibility." },
+        { number: "03", label: "DEFENSE & TECHNOLOGY", title: "Defense & Technology", copy: "Investing in advanced technology and partnerships that provide a precise response to the challenges of tomorrow." },
+      ],
+    },
+    values: {
+      eyebrow: "The values that guide us",
+      heading: "What stays constant\nwhen everything changes.",
+      items: [
+        { number: "01", title: "Trust", copy: "The foundation of every long-term relationship." },
+        { number: "02", title: "Excellence", copy: "An uncompromising standard in selection, execution and outcome." },
+        { number: "03", title: "Simplicity", copy: "Clear thinking that makes confident progress possible." },
+        { number: "04", title: "People", copy: "Good people are the force behind every partnership." },
+        { number: "05", title: "Innovation", copy: "An openness to opportunity and new ways to create value." },
+      ],
+    },
+    partners: {
+      eyebrow: "Partnerships & Investors",
+      heading: "Shared value begins\nwith transparency.",
+      copy: "We believe a strong partnership is the foundation for growth. That is why we act with transparency, responsibility and long-term thinking — toward our shareholders, partners and the communities around us.",
+      button: "Speak with Investor Relations",
+      kicker: "THE BROOKS APPROACH",
+      quote: "“Partnerships built on trust let us see further — and build with greater clarity.”",
+      stats: ["Business areas", "Shared vision", "Growth possibilities"],
+    },
+    updates: {
+      eyebrow: "News & Updates",
+      heading: "What's happening\nat BROOKS.",
+      all: "View all updates",
+      readAria: "Read",
+      articles: [
+        { date: "10.09.2026", tag: "Company update", title: "BROOKS & PARTNERS expands into new growth channels", copy: "The company continues to strengthen its multidisciplinary model through strategic partnerships." },
+        { date: "27.08.2026", tag: "Energy", title: "New partnership advances renewable-energy solutions", copy: "Another step toward long-term impact alongside shared economic value." },
+        { date: "04.08.2026", tag: "Real estate", title: "Planning with vision: a new project joins the portfolio", copy: "The project reflects our view of living spaces, quality and forward-looking urban environments." },
+      ],
+    },
+    contact: {
+      eyebrow: "Let's talk",
+      heading: "Tomorrow begins\nwith a conversation.",
+      copy: "Have an idea, opportunity or partnership that can create value? We would be glad to connect.",
+      form: {
+        name: "Full name",
+        namePlaceholder: "How should we address you?",
+        email: "Email address",
+        emailPlaceholder: "your@email.com",
+        subject: "Subject",
+        subjectPlaceholder: "Choose a subject",
+        partnership: "Partnership",
+        investors: "Investors",
+        general: "General enquiry",
+        submit: "Send enquiry",
+        success: "Thank you. Your enquiry has been received and we will be in touch soon.",
+      },
+    },
+    footer: {
+      tagline: "GLOBAL COOPERATION, BUILT ON TRUST.",
+      about: "About",
+      activity: "Businesses",
+      contact: "Contact",
+      copyright: "© 2026 BROOKS & PARTNERS. All rights reserved.",
+      legal: "Privacy & Terms",
+    },
   },
-  {
-    number: "02",
-    title: "אנרגיה",
-    english: "ENERGY",
-    copy: "קידום תשתיות אנרגיה מתחדשת ופתרונות יעילים המשלבים צמיחה עסקית עם אחריות סביבתית.",
-    image: "/assets/images/energy.jpg",
-    icon: Leaf,
+  he: {
+    nav: { about: "אודות", divisions: "תחומי פעילות", partners: "שותפויות", updates: "עדכונים", contact: "דברו איתנו" },
+    switchLabel: "EN",
+    switchAria: "Switch to English",
+    menuOpen: "פתיחת תפריט",
+    menuClose: "סגירת תפריט",
+    homeAria: "BROOKS & PARTNERS — דף הבית",
+    hero: {
+      titleTop: "צומחים קדימה.",
+      titleBottom: "ביחד.",
+      description: "אנו בונים שיתופי פעולה גלובליים בתחומי הנדל״ן, האנרגיה והביטחון — ומבססים ערך שנמשך לאורך זמן.",
+      primary: "הכירו את BROOKS",
+      secondary: "תחומי הפעילות שלנו",
+    },
+    about: {
+      eyebrow: "מי אנחנו",
+      heading: "הרבה מעבר\nלתחום אחד.",
+      link: "לקריאה על הגישה שלנו",
+      lead: "BROOKS & PARTNERS היא פלטפורמה ציבורית הפועלת במפגש שבין הזדמנות, מומחיות ואנשים.",
+      copy: "אנו מאתרים מנועי צמיחה, מחברים בין שותפים מובילים, ומלווים מהלכים מורכבים מהרעיון ועד ליצירת ערך ממשי. הגישה שלנו נשענת על תכנון מדויק, גמישות מחשבתית ומחויבות עמוקה לאמון.",
+      signature: "שלושה תחומים. תפיסה אחת.",
+      signatureStrong: "צמיחה משותפת, באחריות.",
+    },
+    divisions: {
+      eyebrow: "מנועי הצמיחה שלנו",
+      heading: "מתמחים במה\nשמניע את המחר.",
+      intro: "הפעילות שלנו מחברת בין נכסים, תשתיות ויכולות טכנולוגיות — כדי לייצר בסיס יציב לצמיחה במציאות משתנה.",
+      detailsAria: "לפרטים על תחום",
+      items: [
+        { number: "01", label: "REAL ESTATE", title: "נדל״ן", copy: "ייזום, השבחה וניהול נכסים באזורים בעלי פוטנציאל, מתוך ראייה ארוכת טווח של איכות, קיימות וקהילה." },
+        { number: "02", label: "ENERGY", title: "אנרגיה", copy: "קידום תשתיות אנרגיה מתחדשת ופתרונות יעילים המשלבים צמיחה עסקית עם אחריות סביבתית." },
+        { number: "03", label: "DEFENSE & TECHNOLOGY", title: "ביטחון וטכנולוגיה", copy: "השקעה ביכולות טכנולוגיות מתקדמות ובשותפויות המאפשרות מענה מדויק לאתגרי העתיד." },
+      ],
+    },
+    values: {
+      eyebrow: "הערכים שמובילים אותנו",
+      heading: "מה נשאר קבוע\nכשכל השאר משתנה.",
+      items: [
+        { number: "01", title: "אמון", copy: "הבסיס לכל מערכת יחסים ארוכת טווח." },
+        { number: "02", title: "מצוינות", copy: "סטנדרט בלתי מתפשר בבחירה, בביצוע ובתוצאה." },
+        { number: "03", title: "פשטות", copy: "חשיבה בהירה שמאפשרת להתקדם בביטחון." },
+        { number: "04", title: "אנשים", copy: "אנשים טובים הם הכוח שמאחורי כל שותפות." },
+        { number: "05", title: "חדשנות", copy: "פתיחות להזדמנויות ולדרכים חדשות ליצור ערך." },
+      ],
+    },
+    partners: {
+      eyebrow: "שותפויות ומשקיעים",
+      heading: "ערך משותף\nמתחיל בשקיפות.",
+      copy: "אנו מאמינים כי שותפות טובה היא תשתית לצמיחה. לכן אנחנו פועלים בשקיפות, באחריות ובחשיבה ארוכת טווח — מול בעלי המניות, השותפים והקהילות שסביבנו.",
+      button: "ליצירת קשר עם קשרי משקיעים",
+      kicker: "גישת BROOKS",
+      quote: "“שיתופי פעולה שמבוססים על אמון מאפשרים לנו לראות רחוק יותר — ולבנות נכון יותר.”",
+      stats: ["תחומי פעילות", "חזון משותף", "אפשרויות לצמיחה"],
+    },
+    updates: {
+      eyebrow: "חדשות ועדכונים",
+      heading: "מה קורה\nב־BROOKS.",
+      all: "לכל העדכונים",
+      readAria: "לקריאת",
+      articles: [
+        { date: "10.09.2026", tag: "עדכון חברה", title: "BROOKS & PARTNERS מרחיבה את פעילותה באפיקי צמיחה חדשים", copy: "החברה ממשיכה לחזק את מודל הפעילות הרב־תחומי שלה באמצעות שיתופי פעולה אסטרטגיים." },
+        { date: "27.08.2026", tag: "אנרגיה", title: "שותפות חדשה לקידום פתרונות אנרגיה מתחדשת", copy: "מהלך נוסף בדרך ליצירת השפעה ארוכת טווח לצד יצירת ערך כלכלי משותף." },
+        { date: "04.08.2026", tag: "נדל״ן", title: "תכנון עם ראייה קדימה: פרויקט חדש מצטרף לפורטפוליו", copy: "הפרויקט משקף את תפיסת החברה לגבי מרחבי חיים, איכות וסביבה עירונית מתקדמת." },
+      ],
+    },
+    contact: {
+      eyebrow: "בואו נדבר",
+      heading: "המחר מתחיל\nבשיחה אחת.",
+      copy: "יש לכם רעיון, הזדמנות או שותפות שיכולה לייצר ערך? נשמח להכיר.",
+      form: {
+        name: "שם מלא",
+        namePlaceholder: "איך נוכל לפנות אליכם?",
+        email: "כתובת אימייל",
+        emailPlaceholder: "your@email.com",
+        subject: "נושא הפנייה",
+        subjectPlaceholder: "בחרו נושא",
+        partnership: "שיתוף פעולה",
+        investors: "משקיעים",
+        general: "פנייה כללית",
+        submit: "שליחת פנייה",
+        success: "תודה, פנייתכם התקבלה. נחזור אליכם בהקדם.",
+      },
+    },
+    footer: {
+      tagline: "GLOBAL COOPERATION, BUILT ON TRUST.",
+      about: "אודות",
+      activity: "פעילות",
+      contact: "צור קשר",
+      copyright: "© 2026 BROOKS & PARTNERS. כל הזכויות שמורות.",
+      legal: "Privacy & Terms",
+    },
   },
-  {
-    number: "03",
-    title: "ביטחון וטכנולוגיה",
-    english: "DEFENSE & TECHNOLOGY",
-    copy: "השקעה ביכולות טכנולוגיות מתקדמות ובשותפויות המאפשרות מענה מדויק לאתגרי העתיד.",
-    image: "/assets/images/defense.jpg",
-    icon: ShieldCheck,
-  },
+} as const;
+
+const divisionImages = [
+  "/assets/images/real-estate.jpg",
+  "/assets/images/energy.jpg",
+  "/assets/images/defense.jpg",
 ];
 
-const values = [
-  { number: "01", title: "אמון", copy: "הבסיס לכל מערכת יחסים ארוכת טווח." },
-  { number: "02", title: "מצוינות", copy: "סטנדרט בלתי מתפשר בבחירה, בביצוע ובתוצאה." },
-  { number: "03", title: "פשטות", copy: "חשיבה בהירה שמאפשרת להתקדם בביטחון." },
-  { number: "04", title: "אנשים", copy: "אנשים טובים הם הכוח שמאחורי כל שותפות." },
-  { number: "05", title: "חדשנות", copy: "פתיחות להזדמנויות ולדרכים חדשות ליצור ערך." },
-];
+const divisionIcons = [Building2, Leaf, ShieldCheck];
 
-const articles = [
-  {
-    date: "10.09.2026",
-    tag: "עדכון חברה",
-    title: "BROOKS & PARTNERS מרחיבה את פעילותה באפיקי צמיחה חדשים",
-    copy: "החברה ממשיכה לחזק את מודל הפעילות הרב־תחומי שלה באמצעות שיתופי פעולה אסטרטגיים.",
-  },
-  {
-    date: "27.08.2026",
-    tag: "אנרגיה",
-    title: "שותפות חדשה לקידום פתרונות אנרגיה מתחדשת",
-    copy: "מהלך נוסף בדרך ליצירת השפעה ארוכת טווח לצד יצירת ערך כלכלי משותף.",
-  },
-  {
-    date: "04.08.2026",
-    tag: "נדל״ן",
-    title: "תכנון עם ראייה קדימה: פרויקט חדש מצטרף לפורטפוליו",
-    copy: "הפרויקט משקף את תפיסת החברה לגבי מרחבי חיים, איכות וסביבה עירונית מתקדמת.",
-  },
-];
+function lines(text: string) {
+  const parts = text.split("\n");
+  return parts.map((part, index) => (
+    <Fragment key={`${part}-${index}`}>
+      {part}
+      {index < parts.length - 1 ? <br /> : null}
+    </Fragment>
+  ));
+}
 
 function scrollToId(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 export default function Home() {
+  const [language, setLanguage] = useState<Language>("en");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [sent, setSent] = useState(false);
+  const t = content[language];
+  const isHebrew = language === "he";
+  const DirectionArrow = isHebrew ? ArrowUpLeft : ArrowUpRight;
+  const DownArrow = isHebrew ? ArrowDownLeft : ArrowDownRight;
+  const MoveArrow = isHebrew ? MoveUpLeft : MoveUpRight;
+  const DirectionChevron = isHebrew ? ChevronLeft : ChevronRight;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -89,33 +249,46 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.documentElement.dir = isHebrew ? "rtl" : "ltr";
+    document.title = isHebrew
+      ? "BROOKS & PARTNERS | צומחים קדימה, ביחד"
+      : "BROOKS & PARTNERS | Moving forward. Together.";
+  }, [isHebrew, language]);
+
   const navigate = (target: string) => {
     setMenuOpen(false);
     scrollToId(target);
   };
 
+  const switchLanguage = () => {
+    setLanguage((current) => (current === "en" ? "he" : "en"));
+    setMenuOpen(false);
+    setSent(false);
+  };
+
   return (
-    <div className="site-shell" dir="rtl">
+    <div className={`site-shell language-${language}`} dir={isHebrew ? "rtl" : "ltr"}>
       <header className={`topbar ${scrolled ? "topbar-scrolled" : ""}`}>
         <div className="topbar-inner">
-          <a className="brand" href="#top" aria-label="BROOKS & PARTNERS — דף הבית" onClick={() => navigate("top")}>
-            <span className="brand-main">BROOKS</span>
-            <span className="brand-sub"><bdi>&amp; PARTNERS</bdi></span>
+          <a className="brand" href="#top" aria-label={t.homeAria} onClick={() => navigate("top")}>
+            <img className="brand-logo" src="/assets/images/brooks-partners-logo.png" alt="BROOKS & PARTNERS" />
           </a>
 
-          <nav className="desktop-nav" aria-label="ניווט ראשי">
-            <button onClick={() => navigate("about")}>אודות</button>
-            <button onClick={() => navigate("divisions")}>תחומי פעילות</button>
-            <button onClick={() => navigate("partners")}>שותפויות</button>
-            <button onClick={() => navigate("updates")}>עדכונים</button>
+          <nav className="desktop-nav" aria-label="Primary navigation">
+            <button onClick={() => navigate("about")}>{t.nav.about}</button>
+            <button onClick={() => navigate("divisions")}>{t.nav.divisions}</button>
+            <button onClick={() => navigate("partners")}>{t.nav.partners}</button>
+            <button onClick={() => navigate("updates")}>{t.nav.updates}</button>
           </nav>
 
           <div className="topbar-actions">
-            <button className="lang-switch" aria-label="Switch to English">EN</button>
+            <button className="lang-switch" onClick={switchLanguage} aria-label={t.switchAria}>{t.switchLabel}</button>
             <button className="contact-link" onClick={() => navigate("contact")}>
-              דברו איתנו <ArrowUpLeft size={15} strokeWidth={2.2} />
+              {t.nav.contact} <DirectionArrow size={15} strokeWidth={2.2} />
             </button>
-            <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "סגירת תפריט" : "פתיחת תפריט"}>
+            <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? t.menuClose : t.menuOpen}>
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -123,11 +296,12 @@ export default function Home() {
       </header>
 
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
-        <button onClick={() => navigate("about")}>אודות <ChevronLeft size={18} /></button>
-        <button onClick={() => navigate("divisions")}>תחומי פעילות <ChevronLeft size={18} /></button>
-        <button onClick={() => navigate("partners")}>שותפויות <ChevronLeft size={18} /></button>
-        <button onClick={() => navigate("updates")}>עדכונים <ChevronLeft size={18} /></button>
-        <button onClick={() => navigate("contact")}>יצירת קשר <ChevronLeft size={18} /></button>
+        <button onClick={() => navigate("about")}>{t.nav.about} <DirectionChevron size={18} /></button>
+        <button onClick={() => navigate("divisions")}>{t.nav.divisions} <DirectionChevron size={18} /></button>
+        <button onClick={() => navigate("partners")}>{t.nav.partners} <DirectionChevron size={18} /></button>
+        <button onClick={() => navigate("updates")}>{t.nav.updates} <DirectionChevron size={18} /></button>
+        <button onClick={() => navigate("contact")}>{t.nav.contact} <DirectionChevron size={18} /></button>
+        <button className="mobile-language-switch" onClick={switchLanguage}>{t.switchLabel}</button>
       </div>
 
       <main id="top">
@@ -137,13 +311,13 @@ export default function Home() {
           <div className="hero-inner container">
             <div className="hero-copy reveal">
               <h1 id="hero-heading">
-                צומחים קדימה.<br />
-                <em>ביחד.</em>
+                {t.hero.titleTop}<br />
+                <em>{t.hero.titleBottom}</em>
               </h1>
-              <p className="hero-description">אנו בונים שיתופי פעולה גלובליים בתחומי הנדל״ן, האנרגיה והביטחון — ומבססים ערך שנמשך לאורך זמן.</p>
+              <p className="hero-description">{t.hero.description}</p>
               <div className="hero-buttons">
-                <button className="button button-gold" onClick={() => navigate("about")}>הכירו את BROOKS <ArrowDownLeft size={18} /></button>
-                <button className="button button-ghost" onClick={() => navigate("divisions")}>תחומי הפעילות שלנו <ChevronLeft size={18} /></button>
+                <button className="button button-gold" onClick={() => navigate("about")}>{t.hero.primary} <DownArrow size={18} /></button>
+                <button className="button button-ghost" onClick={() => navigate("divisions")}>{t.hero.secondary} <DirectionChevron size={18} /></button>
               </div>
             </div>
           </div>
@@ -152,18 +326,18 @@ export default function Home() {
         <section className="statement-section" id="about" aria-labelledby="about-heading">
           <div className="container statement-grid">
             <div className="section-intro reveal">
-              <p className="eyebrow"><span /> מי אנחנו</p>
-              <h2 id="about-heading">הרבה מעבר<br />לתחום אחד.</h2>
+              <p className="eyebrow">{t.about.eyebrow}</p>
+              <h2 id="about-heading">{lines(t.about.heading)}</h2>
               <a href="#partners" className="text-link" onClick={(event) => { event.preventDefault(); navigate("partners"); }}>
-                לקריאה על הגישה שלנו <ArrowUpLeft size={18} />
+                {t.about.link} <DirectionArrow size={18} />
               </a>
             </div>
             <div className="statement-copy reveal delay-1">
-              <p className="lead">BROOKS &amp; PARTNERS היא פלטפורמה ציבורית הפועלת במפגש שבין הזדמנות, מומחיות ואנשים.</p>
-              <p>אנו מאתרים מנועי צמיחה, מחברים בין שותפים מובילים, ומלווים מהלכים מורכבים מהרעיון ועד ליצירת ערך ממשי. הגישה שלנו נשענת על תכנון מדויק, גמישות מחשבתית ומחויבות עמוקה לאמון.</p>
+              <p className="lead">{t.about.lead}</p>
+              <p>{t.about.copy}</p>
               <div className="signature-row">
                 <div className="round-mark"><Network size={24} /></div>
-                <span>שלושה תחומים. תפיסה אחת.<br /><b>צמיחה משותפת, באחריות.</b></span>
+                <span>{t.about.signature}<br /><b>{t.about.signatureStrong}</b></span>
               </div>
             </div>
           </div>
@@ -172,25 +346,25 @@ export default function Home() {
         <section className="divisions-section" id="divisions" aria-labelledby="divisions-heading">
           <div className="container section-heading-row">
             <div>
-              <p className="eyebrow light"><span /> מנועי הצמיחה שלנו</p>
-              <h2 id="divisions-heading">מתמחים במה<br />שמניע את המחר.</h2>
+              <p className="eyebrow light">{t.divisions.eyebrow}</p>
+              <h2 id="divisions-heading">{lines(t.divisions.heading)}</h2>
             </div>
-            <p>הפעילות שלנו מחברת בין נכסים, תשתיות ויכולות טכנולוגיות — כדי לייצר בסיס יציב לצמיחה במציאות משתנה.</p>
+            <p>{t.divisions.intro}</p>
           </div>
           <div className="division-grid">
-            {divisions.map((division) => {
-              const Icon = division.icon;
+            {t.divisions.items.map((division, index) => {
+              const Icon = divisionIcons[index];
               return (
                 <article className="division-card" key={division.number}>
-                  <img src={division.image} alt="" />
+                  <img src={divisionImages[index]} alt="" />
                   <div className="division-shade" />
                   <div className="division-content">
                     <div className="division-topline"><span>{division.number}</span><Icon size={20} /></div>
                     <div>
-                      <p className="division-english">{division.english}</p>
+                      <p className="division-english">{division.label}</p>
                       <h3>{division.title}</h3>
                       <p className="division-copy">{division.copy}</p>
-                      <button className="round-arrow" aria-label={`לפרטים על תחום ${division.title}`} onClick={() => navigate("contact")}><ArrowUpLeft size={20} /></button>
+                      <button className="round-arrow" aria-label={`${t.divisions.detailsAria} ${division.title}`} onClick={() => navigate("contact")}><DirectionArrow size={20} /></button>
                     </div>
                   </div>
                 </article>
@@ -202,11 +376,11 @@ export default function Home() {
         <section className="values-section" aria-labelledby="values-heading">
           <div className="container">
             <div className="values-top">
-              <p className="eyebrow"><span /> הערכים שמובילים אותנו</p>
-              <h2 id="values-heading">מה נשאר קבוע<br />כשכל השאר משתנה.</h2>
+              <p className="eyebrow">{t.values.eyebrow}</p>
+              <h2 id="values-heading">{lines(t.values.heading)}</h2>
             </div>
             <div className="values-grid">
-              {values.map((value) => (
+              {t.values.items.map((value) => (
                 <article className="value-card" key={value.number}>
                   <span className="value-number">{value.number}</span>
                   <div className="value-line" />
@@ -222,19 +396,19 @@ export default function Home() {
           <div className="partners-pattern" />
           <div className="container partners-grid">
             <div className="partners-copy">
-              <p className="eyebrow light"><span /> שותפויות ומשקיעים</p>
-              <h2 id="partners-heading">ערך משותף<br />מתחיל בשקיפות.</h2>
-              <p>אנו מאמינים כי שותפות טובה היא תשתית לצמיחה. לכן אנחנו פועלים בשקיפות, באחריות ובחשיבה ארוכת טווח — מול בעלי המניות, השותפים והקהילות שסביבנו.</p>
-              <button className="button button-outline-light" onClick={() => navigate("contact")}>ליצירת קשר עם קשרי משקיעים <ArrowUpLeft size={18} /></button>
+              <p className="eyebrow light">{t.partners.eyebrow}</p>
+              <h2 id="partners-heading">{lines(t.partners.heading)}</h2>
+              <p>{t.partners.copy}</p>
+              <button className="button button-outline-light" onClick={() => navigate("contact")}>{t.partners.button} <DirectionArrow size={18} /></button>
             </div>
             <div className="partner-panel">
               <div className="panel-icon"><Globe2 size={26} /></div>
-              <p className="panel-kicker">THE BROOKS APPROACH</p>
-              <p className="panel-quote">“שיתופי פעולה שמבוססים על אמון מאפשרים לנו לראות רחוק יותר — ולבנות נכון יותר.”</p>
+              <p className="panel-kicker">{t.partners.kicker}</p>
+              <p className="panel-quote">{t.partners.quote}</p>
               <div className="partner-stats">
-                <div><strong>3</strong><span>תחומי פעילות</span></div>
-                <div><strong>1</strong><span>חזון משותף</span></div>
-                <div><strong>∞</strong><span>אפשרויות לצמיחה</span></div>
+                <div><strong>3</strong><span>{t.partners.stats[0]}</span></div>
+                <div><strong>1</strong><span>{t.partners.stats[1]}</span></div>
+                <div><strong>∞</strong><span>{t.partners.stats[2]}</span></div>
               </div>
             </div>
           </div>
@@ -244,18 +418,18 @@ export default function Home() {
           <div className="container">
             <div className="updates-heading">
               <div>
-                <p className="eyebrow"><span /> חדשות ועדכונים</p>
-                <h2 id="updates-heading">מה קורה ב־BROOKS.</h2>
+                <p className="eyebrow">{t.updates.eyebrow}</p>
+                <h2 id="updates-heading">{lines(t.updates.heading)}</h2>
               </div>
-              <button className="text-link" onClick={() => navigate("contact")}>לכל העדכונים <ArrowUpLeft size={18} /></button>
+              <button className="text-link" onClick={() => navigate("contact")}>{t.updates.all} <DirectionArrow size={18} /></button>
             </div>
             <div className="articles-grid">
-              {articles.map((article, index) => (
+              {t.updates.articles.map((article, index) => (
                 <article className={`article-card article-${index + 1}`} key={article.title}>
                   <div className="article-meta"><span>{article.tag}</span><time>{article.date}</time></div>
                   <h3>{article.title}</h3>
                   <p>{article.copy}</p>
-                  <button className="article-arrow" aria-label={`לקריאת ${article.title}`} onClick={() => navigate("contact")}><ArrowUpLeft size={18} /></button>
+                  <button className="article-arrow" aria-label={`${t.updates.readAria} ${article.title}`} onClick={() => navigate("contact")}><DirectionArrow size={18} /></button>
                 </article>
               ))}
             </div>
@@ -265,17 +439,17 @@ export default function Home() {
         <section className="contact-section" id="contact" aria-labelledby="contact-heading">
           <div className="container contact-grid">
             <div className="contact-copy">
-              <p className="eyebrow light"><span /> בואו נדבר</p>
-              <h2 id="contact-heading">המחר מתחיל<br />בשיחה אחת.</h2>
-              <p>יש לכם רעיון, הזדמנות או שותפות שיכולה לייצר ערך? נשמח להכיר.</p>
+              <p className="eyebrow light">{t.contact.eyebrow}</p>
+              <h2 id="contact-heading">{lines(t.contact.heading)}</h2>
+              <p>{t.contact.copy}</p>
               <a className="email-link" href="mailto:info@brooks-partners.com"><Mail size={19} /> info@brooks-partners.com</a>
             </div>
             <form className="contact-form" onSubmit={(event) => { event.preventDefault(); setSent(true); }}>
-              <label>שם מלא<input required placeholder="איך נוכל לפנות אליכם?" /></label>
-              <label>כתובת אימייל<input required type="email" placeholder="your@email.com" dir="ltr" /></label>
-              <label>נושא הפנייה<select defaultValue=""><option value="" disabled>בחרו נושא</option><option>שיתוף פעולה</option><option>משקיעים</option><option>פנייה כללית</option></select></label>
-              <button type="submit" className="button button-gold">שליחת פנייה <MoveUpLeft size={18} /></button>
-              {sent && <p className="form-success"><BadgeCheck size={16} /> תודה, פנייתכם התקבלה. נחזור אליכם בהקדם.</p>}
+              <label>{t.contact.form.name}<input required placeholder={t.contact.form.namePlaceholder} /></label>
+              <label>{t.contact.form.email}<input required type="email" placeholder={t.contact.form.emailPlaceholder} dir="ltr" /></label>
+              <label>{t.contact.form.subject}<select key={language} defaultValue=""><option value="" disabled>{t.contact.form.subjectPlaceholder}</option><option>{t.contact.form.partnership}</option><option>{t.contact.form.investors}</option><option>{t.contact.form.general}</option></select></label>
+              <button type="submit" className="button button-gold">{t.contact.form.submit} <MoveArrow size={18} /></button>
+              {sent && <p className="form-success"><BadgeCheck size={16} /> {t.contact.form.success}</p>}
             </form>
           </div>
         </section>
@@ -283,11 +457,11 @@ export default function Home() {
 
       <footer className="footer">
         <div className="container footer-top">
-          <a className="brand footer-brand" href="#top" onClick={() => navigate("top")}><span className="brand-main">BROOKS</span><span className="brand-sub"><bdi>&amp; PARTNERS</bdi></span></a>
-          <p>GLOBAL COOPERATION, BUILT ON TRUST.</p>
-          <div className="footer-links"><a href="#about" onClick={(event) => { event.preventDefault(); navigate("about"); }}>אודות</a><a href="#divisions" onClick={(event) => { event.preventDefault(); navigate("divisions"); }}>פעילות</a><a href="#contact" onClick={(event) => { event.preventDefault(); navigate("contact"); }}>צור קשר</a></div>
+          <a className="brand footer-brand" href="#top" aria-label={t.homeAria} onClick={() => navigate("top")}><img className="brand-logo" src="/assets/images/brooks-partners-logo.png" alt="BROOKS & PARTNERS" /></a>
+          <p>{t.footer.tagline}</p>
+          <div className="footer-links"><a href="#about" onClick={(event) => { event.preventDefault(); navigate("about"); }}>{t.footer.about}</a><a href="#divisions" onClick={(event) => { event.preventDefault(); navigate("divisions"); }}>{t.footer.activity}</a><a href="#contact" onClick={(event) => { event.preventDefault(); navigate("contact"); }}>{t.footer.contact}</a></div>
         </div>
-        <div className="container footer-bottom"><span>© 2026 BROOKS &amp; PARTNERS. כל הזכויות שמורות.</span><span>Privacy &amp; Terms</span></div>
+        <div className="container footer-bottom"><span>{t.footer.copyright}</span><span>{t.footer.legal}</span></div>
       </footer>
     </div>
   );
