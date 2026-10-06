@@ -146,18 +146,13 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 .signature-row b { color: var(--navy); font-weight: 700; }
 .round-mark { display: grid; flex: 0 0 auto; width: 51px; height: 51px; place-items: center; color: var(--navy); border: 1px solid var(--gold); border-radius: 50%; }
 
-.office-section { padding: 124px 0 142px; background: #e8ebe9; }
-.office-intro { display: grid; grid-template-columns: 1fr .72fr; gap: 80px; align-items: end; margin-bottom: 54px; }
-.office-intro h2 { max-width: 500px; }
-.office-intro > p { max-width: 390px; margin: 0 0 4px; color: #526574; font-size: 17px; line-height: 1.8; }
-.office-gallery { display: grid; gap: 0; }
-.office-photo { margin: 0; overflow: hidden; background: #dbe0e2; box-shadow: 0 18px 38px rgba(8, 40, 66, .12); }
-.office-photo img { display: block; width: 100%; height: auto; transition: transform 650ms var(--ease-out); }
-.office-photo:hover img { transform: scale(1.025); }
-.office-photo figcaption { padding: 12px 14px; color: var(--navy); background: #fbfaf7; font-size: 14px; font-weight: 500; }
-.office-photo-main { position: relative; }
-.office-photo-main figcaption { position: absolute; right: 0; bottom: 0; left: auto; padding: 13px 18px; color: white; background: rgba(6, 30, 51, .86); backdrop-filter: blur(6px); }
-.office-detail-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; width: min(calc(100% - 142px), 1020px); margin: -77px auto 0; }
+.atmosphere-strip { margin: 24px 0 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.28); box-shadow: 0 12px 28px rgba(4,23,42,.16); }
+.atmosphere-strip img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.78) contrast(1.03); transition: transform 650ms var(--ease-out), filter 300ms var(--ease-out); }
+.atmosphere-strip:hover img { filter: saturate(1); transform: scale(1.025); }
+.atmosphere-strip-partners { width: min(100%, 475px); height: 144px; }
+.atmosphere-strip-updates { width: 100%; height: 164px; margin: -17px 0 34px; border-color: rgba(9,39,68,.13); box-shadow: 0 12px 28px rgba(8,40,66,.08); }
+.atmosphere-strip-updates img { object-position: center 48%; }
+.atmosphere-strip-contact { width: min(100%, 390px); height: 154px; margin: 24px 0 14px; border-color: rgba(255,255,255,.27); box-shadow: none; }
 
 .divisions-section { padding: 112px 0 0; color: white; background: var(--navy); }
 .section-heading-row { display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: end; margin-bottom: 59px; }
@@ -247,8 +242,7 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 .language-en .hero-copy, .language-en .statement-copy, .language-en .section-intro,
 .language-en .section-heading-row, .language-en .partners-copy, .language-en .contact-copy,
 .language-en .updates-heading, .language-en .article-card, .language-en .division-content,
-.language-en .value-card, .language-en .partner-panel, .language-en .contact-form,
-.language-en .office-intro, .language-en .office-photo figcaption { text-align: left; }
+.language-en .value-card, .language-en .partner-panel, .language-en .contact-form { text-align: left; }
 .language-en .hero-copy { margin-right: auto; margin-left: 0; }
 .language-en .section-heading-row > p { text-align: left; }
 .language-en .signature-row { text-align: left; }
@@ -262,8 +256,7 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 .language-he .hero-copy, .language-he .statement-copy, .language-he .section-intro,
 .language-he .section-heading-row, .language-he .partners-copy, .language-he .contact-copy,
 .language-he .updates-heading, .language-he .article-card, .language-he .division-content,
-.language-he .value-card, .language-he .partner-panel, .language-he .contact-form,
-.language-he .office-intro, .language-he .office-photo figcaption { text-align: right; }
+.language-he .value-card, .language-he .partner-panel, .language-he .contact-form { text-align: right; }
 .language-he .hero-copy { margin-left: 0; margin-right: auto; }
 .language-he .section-heading-row > p { text-align: right; }
 .language-he .signature-row { text-align: right; }
@@ -295,8 +288,8 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
   .button-ghost:hover { color: white; border-color: var(--navy); background: var(--navy); }
   .statement-grid, .partners-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
   .statement-copy { padding-top: 0; }
-  .office-intro { grid-template-columns: 1fr; gap: 25px; }
-  .office-detail-grid { width: min(calc(100% - 56px), 760px); }
+  .atmosphere-strip-partners { width: min(100%, 560px); height: 168px; }
+  .atmosphere-strip-contact { width: min(100%, 520px); height: 184px; }
   .section-heading-row { grid-template-columns: 1fr; }
   .division-grid { grid-template-columns: 1fr; }
   .division-card, .division-content { min-height: 430px; }
@@ -323,16 +316,15 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
   .hero-description { font-size: 17px; }
   .hero-slogan { margin-top: auto; }
   .hero-scroll { display: none; }
-  .statement-section, .office-section, .values-section, .updates-section, .contact-section { padding: 84px 0; }
+  .statement-section, .values-section, .updates-section, .contact-section { padding: 84px 0; }
   .divisions-section { padding-top: 84px; }
   h2 { font-size: 43px; }
   .statement-copy .lead { font-size: 20px; }
   .statement-copy > p:not(.lead) { font-size: 16px; }
-  .office-intro { margin-bottom: 36px; }
-  .office-intro > p { font-size: 16px; }
-  .office-detail-grid { grid-template-columns: 1fr; width: 100%; margin-top: 18px; gap: 16px; }
-  .office-photo-main figcaption { position: static; padding: 12px 14px; }
-  .office-photo figcaption { font-size: 13px; }
+  .atmosphere-strip { margin-top: 20px; margin-bottom: 22px; }
+  .atmosphere-strip-partners { height: 142px; }
+  .atmosphere-strip-updates { height: 118px; margin: -4px 0 25px; }
+  .atmosphere-strip-contact { height: 144px; margin-bottom: 14px; }
   .section-heading-row { margin-bottom: 40px; }
   .section-heading-row > p { font-size: 15px; }
   .division-content { padding: 25px 22px; }
