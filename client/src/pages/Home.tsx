@@ -45,6 +45,17 @@ const content = {
       signature: "Three businesses. One perspective.",
       signatureStrong: "Growing together, responsibly.",
     },
+    office: {
+      eyebrow: "Inside BROOKS",
+      heading: "A place made for\nclear thinking.",
+      copy: "Our workspace brings people together to think openly, act precisely and build long-term partnerships.",
+      mainAlt: "BROOKS & PARTNERS reception area",
+      mainCaption: "Reception & collaboration",
+      signAlt: "BROOKS & PARTNERS office wall sign",
+      signCaption: "Our identity, in every detail",
+      meetingAlt: "BROOKS & PARTNERS meeting room",
+      meetingCaption: "A space for conversation",
+    },
     divisions: {
       eyebrow: "Our growth engines",
       heading: "Focused on what\nmoves tomorrow.",
@@ -136,6 +147,17 @@ const content = {
       copy: "אנו מאתרים מנועי צמיחה, מחברים בין שותפים מובילים, ומלווים מהלכים מורכבים מהרעיון ועד ליצירת ערך ממשי. הגישה שלנו נשענת על תכנון מדויק, גמישות מחשבתית ומחויבות עמוקה לאמון.",
       signature: "שלושה תחומים. תפיסה אחת.",
       signatureStrong: "צמיחה משותפת, באחריות.",
+    },
+    office: {
+      eyebrow: "מבפנים",
+      heading: "מקום שנועד\nלחשיבה בהירה.",
+      copy: "המרחב שלנו מחבר בין אנשים, דיוק ורעיונות — כדי לבנות שותפויות ארוכות טווח.",
+      mainAlt: "אזור הקבלה של BROOKS & PARTNERS",
+      mainCaption: "קבלה ומרחב שיתוף פעולה",
+      signAlt: "שלט קיר של BROOKS & PARTNERS",
+      signCaption: "הזהות שלנו, בכל פרט",
+      meetingAlt: "חדר הישיבות של BROOKS & PARTNERS",
+      meetingCaption: "מרחב לשיחה משמעותית",
     },
     divisions: {
       eyebrow: "מנועי הצמיחה שלנו",
@@ -339,6 +361,32 @@ export default function Home() {
                 <div className="round-mark"><Network size={24} /></div>
                 <span>{t.about.signature}<br /><b>{t.about.signatureStrong}</b></span>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="office-section" aria-labelledby="office-heading">
+          <div className="container office-intro">
+            <div>
+              <p className="eyebrow">{t.office.eyebrow}</p>
+              <h2 id="office-heading">{lines(t.office.heading)}</h2>
+            </div>
+            <p>{t.office.copy}</p>
+          </div>
+          <div className="container office-gallery">
+            <figure className="office-photo office-photo-main">
+              <img src="/assets/images/brooks-reception.jpg" alt={t.office.mainAlt} />
+              <figcaption>{t.office.mainCaption}</figcaption>
+            </figure>
+            <div className="office-detail-grid">
+              <figure className="office-photo">
+                <img src="/assets/images/brooks-wall-sign.jpg" alt={t.office.signAlt} />
+                <figcaption>{t.office.signCaption}</figcaption>
+              </figure>
+              <figure className="office-photo">
+                <img src="/assets/images/brooks-meeting-room.jpg" alt={t.office.meetingAlt} />
+                <figcaption>{t.office.meetingCaption}</figcaption>
+              </figure>
             </div>
           </div>
         </section>
