@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import {
   ArrowUpLeft,
   ArrowUpRight,
@@ -26,7 +26,7 @@ type Language = "en" | "he";
 
 const content = {
   en: {
-    nav: { about: "About", divisions: "Our Businesses", partners: "Partnerships", updates: "Updates", contact: "Contact us" },
+    nav: { about: "About", team: "Our Team", divisions: "Our Businesses", partners: "Partnerships", updates: "Updates", contact: "Contact us" },
     switchLabel: "עברית",
     switchAria: "Switch to Hebrew",
     menuOpen: "Open menu",
@@ -46,8 +46,6 @@ const content = {
       eyebrow: "Our growth engines",
       heading: "Focused on what\nmoves tomorrow.",
       intro: "Our work connects assets, infrastructure and technology to create a resilient foundation for growth in a changing world.",
-      more: "Read more",
-      less: "Read less",
       items: [
         {
           number: "01",
@@ -89,8 +87,6 @@ const content = {
       eyebrow: "Our team",
       heading: "The people behind\nthe partnership.",
       competenciesLabel: "Core Competencies & Focus Areas",
-      more: "Read full profile",
-      less: "Show less",
       members: [
         {
           number: "01",
@@ -197,7 +193,7 @@ const content = {
     },
   },
   he: {
-    nav: { about: "אודות", divisions: "תחומי פעילות", partners: "שותפויות", updates: "עדכונים", contact: "דברו איתנו" },
+    nav: { about: "אודות", team: "הצוות שלנו", divisions: "תחומי פעילות", partners: "שותפויות", updates: "עדכונים", contact: "דברו איתנו" },
     switchLabel: "EN",
     switchAria: "Switch to English",
     menuOpen: "פתיחת תפריט",
@@ -217,8 +213,6 @@ const content = {
       eyebrow: "מנועי הצמיחה שלנו",
       heading: "מתמחים במה\nשמניע את המחר.",
       intro: "הפעילות שלנו מחברת בין נכסים, תשתיות ויכולות טכנולוגיות — כדי לייצר בסיס יציב לצמיחה במציאות משתנה.",
-      more: "קראו עוד",
-      less: "הצגת פחות",
       items: [
         {
           number: "01",
@@ -260,8 +254,6 @@ const content = {
       eyebrow: "הצוות שלנו",
       heading: "האנשים שמאחורי\nהשותפות.",
       competenciesLabel: "תחומי מומחיות ומיקוד",
-      more: "לפרופיל המלא",
-      less: "הצגת פחות",
       members: [
         {
           number: "01",
@@ -382,14 +374,40 @@ const divisionIcons = [Building2, Leaf, ShieldCheck];
 // e.g. "/assets/images/team/haim-brooks-cohen.jpg". Until then a monogram placeholder is shown.
 const teamPhotos: (string | null)[] = [null, null, null];
 
-function lines(text: string) {
-  const parts = text.split("\n");
-  return parts.map((part, index) => (
-    <Fragment key={`${part}-${index}`}>
-      {part}
-      {index < parts.length - 1 ? <br /> : null}
-    </Fragment>
-  ));
+const hebrewPattern = /[\u0590-\u05FF]/;
+
+/** Heading split into lines; each line slides up from behind a mask when its section scrolls into view. */
+function RevealLines({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("\n").map((part, index) => (
+        <span className="line" key={index}>
+          <span className="line-inner" style={{ "--i": index } as CSSProperties}>{part}</span>
+        </span>
+      ))}
+    </>
+  );
+}
+
+/** Paragraph split into words that fade into focus one after another. */
+function RevealWords({ text }: { text: string }) {
+  const chunks: string[] = [];
+  const mixedDirection = hebrewPattern.test(text);
+  text.split(" ").forEach((word, index, words) => {
+    // Keep runs of Latin words together inside Hebrew text so their left-to-right order survives.
+    if (mixedDirection && index > 0 && !hebrewPattern.test(word) && !hebrewPattern.test(words[index - 1])) {
+      chunks[chunks.length - 1] += ` ${word}`;
+    } else {
+      chunks.push(word);
+    }
+  });
+  return (
+    <>
+      {chunks.map((chunk, index) => (
+        <span className="word" key={index} style={{ "--i": index } as CSSProperties}>{chunk}{index < chunks.length - 1 ? " " : ""}</span>
+      ))}
+    </>
+  );
 }
 
 function scrollToId(id: string) {
@@ -401,8 +419,6 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [sent, setSent] = useState(false);
-  const [openDivisions, setOpenDivisions] = useState<string[]>([]);
-  const [openBios, setOpenBios] = useState<string[]>([]);
   const [isMuted, setIsMuted] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [isMobileVideo, setIsMobileVideo] = useState(() => window.matchMedia("(max-width: 900px)").matches);
@@ -453,8 +469,6 @@ export default function Home() {
       : "BROOKS & PARTNERS | Global Cooperation, Built on Trust.";
   }, [isHebrew, language]);
 
-  const toggleIn = (list: string[], id: string) => (list.includes(id) ? list.filter((item) => item !== id) : [...list, id]);
-
   const navigate = (target: string) => {
     setMenuOpen(false);
     scrollToId(target);
@@ -488,6 +502,7 @@ export default function Home() {
 
   return (
     <div className={`site-shell language-${language}`} dir={isHebrew ? "rtl" : "ltr"}>
+      <div className="scroll-progress" aria-hidden="true" />
       <header className={`topbar ${scrolled ? "topbar-scrolled" : "topbar-at-top"}`}>
         <div className="topbar-inner">
           <a className="brand" href="#top" aria-label={t.homeAria} onClick={() => navigate("top")}>
@@ -497,6 +512,7 @@ export default function Home() {
 
           <nav className="desktop-nav" aria-label="Primary navigation">
             <button onClick={() => navigate("about")}>{t.nav.about}</button>
+            <button onClick={() => navigate("team")}>{t.nav.team}</button>
             <button onClick={() => navigate("divisions")}>{t.nav.divisions}</button>
             <button onClick={() => navigate("partners")}>{t.nav.partners}</button>
             <button onClick={() => navigate("updates")}>{t.nav.updates}</button>
@@ -516,6 +532,7 @@ export default function Home() {
 
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
         <button onClick={() => navigate("about")}>{t.nav.about} <DirectionChevron size={18} /></button>
+        <button onClick={() => navigate("team")}>{t.nav.team} <DirectionChevron size={18} /></button>
         <button onClick={() => navigate("divisions")}>{t.nav.divisions} <DirectionChevron size={18} /></button>
         <button onClick={() => navigate("partners")}>{t.nav.partners} <DirectionChevron size={18} /></button>
         <button onClick={() => navigate("updates")}>{t.nav.updates} <DirectionChevron size={18} /></button>
@@ -561,13 +578,13 @@ export default function Home() {
           <div className="container statement-grid">
             <div className="section-intro reveal scroll-reveal">
               <p className="eyebrow">{t.about.eyebrow}</p>
-              <h2 id="about-heading">{lines(t.about.heading)}</h2>
+              <h2 id="about-heading"><RevealLines text={t.about.heading} /></h2>
               <a href="#partners" className="text-link" onClick={(event) => { event.preventDefault(); navigate("partners"); }}>
                 {t.about.link} <DirectionArrow size={18} />
               </a>
             </div>
             <div className="statement-copy reveal delay-1 scroll-reveal scroll-delay-1">
-              <p className="lead">{t.about.lead}</p>
+              <p className="lead"><RevealWords text={t.about.lead} /></p>
               <p>{t.about.copy}</p>
               <div className="signature-row">
                 <div className="round-mark"><Network size={24} /></div>
@@ -581,16 +598,14 @@ export default function Home() {
           <div className="container">
             <div className="team-top scroll-reveal">
               <p className="eyebrow">{t.team.eyebrow}</p>
-              <h2 id="team-heading">{lines(t.team.heading)}</h2>
+              <h2 id="team-heading"><RevealLines text={t.team.heading} /></h2>
             </div>
             <div className="team-grid">
               {t.team.members.map((member, index) => {
-                const isOpen = openBios.includes(member.number);
                 const photo = teamPhotos[index];
-                const bioId = `team-bio-${member.number}`;
                 return (
-                  <article className={`team-card scroll-reveal scroll-delay-${index + 1}`} key={member.number}>
-                    <div className="team-head">
+                  <article className="team-card" key={member.number}>
+                    <div className={`team-head scroll-reveal scroll-delay-${index + 1}`}>
                       <div className="team-photo">
                         {photo ? <img src={photo} alt={member.name} loading="lazy" /> : <span aria-hidden="true">{member.initials}</span>}
                       </div>
@@ -600,28 +615,15 @@ export default function Home() {
                         <p className="team-role">{member.role}</p>
                       </div>
                     </div>
-                    <p className="team-label">{t.team.competenciesLabel}</p>
-                    <ul className="team-tags">
-                      {member.competencies.map((item) => <li key={item}>{item}</li>)}
+                    <ul className="team-bio">
+                      {member.bio.map((item, itemIndex) => <li className="scroll-reveal" key={itemIndex}>{item}</li>)}
                     </ul>
-                    <div className={`expandable ${isOpen ? "open" : ""}`} id={bioId}>
-                      <div className="expandable-inner">
-                        <ul className="team-bio">
-                          {member.bio.map((item) => <li key={item}>{item}</li>)}
-                        </ul>
-                      </div>
+                    <div className="team-competencies scroll-reveal">
+                      <p className="team-label">{t.team.competenciesLabel}</p>
+                      <ul className="team-tags">
+                        {member.competencies.map((item, itemIndex) => <li key={itemIndex} style={{ "--i": itemIndex } as CSSProperties}>{item}</li>)}
+                      </ul>
                     </div>
-                    <button
-                      type="button"
-                      className="more-toggle"
-                      aria-expanded={isOpen}
-                      aria-controls={bioId}
-                      onClick={() => setOpenBios((current) => toggleIn(current, member.number))}
-                    >
-                      <span>{isOpen ? t.team.less : t.team.more}</span>
-                      <i aria-hidden="true"><ChevronDown size={17} /></i>
-                      <span className="sr-only"> — {member.name}</span>
-                    </button>
                   </article>
                 );
               })}
@@ -633,42 +635,27 @@ export default function Home() {
           <div className="container section-heading-row scroll-reveal">
             <div>
               <p className="eyebrow light">{t.divisions.eyebrow}</p>
-              <h2 id="divisions-heading">{lines(t.divisions.heading)}</h2>
+              <h2 id="divisions-heading"><RevealLines text={t.divisions.heading} /></h2>
             </div>
             <p>{t.divisions.intro}</p>
           </div>
           <div className="division-grid">
             {t.divisions.items.map((division, index) => {
               const Icon = divisionIcons[index];
-              const isOpen = openDivisions.includes(division.number);
-              const [firstParagraph, ...moreParagraphs] = division.paragraphs;
-              const detailsId = `division-details-${division.number}`;
               return (
-                <article className={`division-card scroll-reveal scroll-delay-${index + 1} ${isOpen ? "is-open" : ""}`} key={division.number}>
+                <article className={`division-card scroll-reveal scroll-delay-${index + 1}`} key={division.number}>
                   <img src={divisionImages[index]} alt="" />
                   <div className="division-shade" />
                   <div className="division-content">
                     <div className="division-topline"><span>{division.number}</span><Icon size={20} /></div>
                     <div className="division-body">
-                      <p className="division-english">{division.label}</p>
-                      <h3>{division.title}</h3>
-                      <p className="division-copy">{firstParagraph}</p>
-                      <div className={`expandable ${isOpen ? "open" : ""}`} id={detailsId}>
-                        <div className="expandable-inner">
-                          {moreParagraphs.map((paragraph) => <p className="division-copy" key={paragraph}>{paragraph}</p>)}
-                        </div>
+                      <div className="division-title scroll-reveal">
+                        <p className="division-english">{division.label}</p>
+                        <h3>{division.title}</h3>
                       </div>
-                      <button
-                        type="button"
-                        className="more-toggle more-toggle-light"
-                        aria-expanded={isOpen}
-                        aria-controls={detailsId}
-                        onClick={() => setOpenDivisions((current) => toggleIn(current, division.number))}
-                      >
-                        <span>{isOpen ? t.divisions.less : t.divisions.more}</span>
-                        <i aria-hidden="true"><ChevronDown size={17} /></i>
-                        <span className="sr-only"> — {division.title}</span>
-                      </button>
+                      {division.paragraphs.map((paragraph, paragraphIndex) => (
+                        <p className="division-copy scroll-reveal" key={paragraphIndex}>{paragraph}</p>
+                      ))}
                     </div>
                   </div>
                 </article>
@@ -681,7 +668,7 @@ export default function Home() {
           <div className="container">
             <div className="values-top scroll-reveal">
               <p className="eyebrow">{t.values.eyebrow}</p>
-              <h2 id="values-heading">{lines(t.values.heading)}</h2>
+              <h2 id="values-heading"><RevealLines text={t.values.heading} /></h2>
             </div>
             <div className="values-grid">
               {t.values.items.map((value) => (
@@ -702,14 +689,14 @@ export default function Home() {
             <div className="partners-copy scroll-reveal">
               <figure className="atmosphere-strip atmosphere-strip-partners"><img src="/assets/images/brooks-meeting-room.jpg" alt="" /></figure>
               <p className="eyebrow light">{t.partners.eyebrow}</p>
-              <h2 id="partners-heading">{lines(t.partners.heading)}</h2>
+              <h2 id="partners-heading"><RevealLines text={t.partners.heading} /></h2>
               <p>{t.partners.copy}</p>
               <button className="button button-outline-light" onClick={() => navigate("contact")}>{t.partners.button} <DirectionArrow size={18} /></button>
             </div>
             <div className="partner-panel scroll-reveal scroll-delay-2">
               <div className="panel-icon"><Globe2 size={26} /></div>
               <p className="panel-kicker">{t.partners.kicker}</p>
-              <p className="panel-quote">{t.partners.quote}</p>
+              <p className="panel-quote"><RevealWords text={t.partners.quote} /></p>
               <div className="partner-stats">
                 <div><strong>3</strong><span>{t.partners.stats[0]}</span></div>
                 <div><strong>1</strong><span>{t.partners.stats[1]}</span></div>
@@ -734,14 +721,14 @@ export default function Home() {
             <div className="updates-heading scroll-reveal">
               <div>
                 <p className="eyebrow">{t.updates.eyebrow}</p>
-                <h2 id="updates-heading">{lines(t.updates.heading)}</h2>
+                <h2 id="updates-heading"><RevealLines text={t.updates.heading} /></h2>
               </div>
               <button className="text-link" onClick={() => navigate("contact")}>{t.updates.all} <DirectionArrow size={18} /></button>
             </div>
             <figure className="atmosphere-strip atmosphere-strip-updates"><img src="/assets/images/brooks-wall-sign.jpg" alt="" /></figure>
             <div className="articles-grid">
               {t.updates.articles.map((article, index) => (
-                <article className={`article-card article-${index + 1} scroll-reveal scroll-delay-${index + 1}`} key={article.title}>
+                <article className={`article-card article-${index + 1} scroll-reveal scroll-delay-${index + 1}`} key={index}>
                   <div className="article-meta"><span>{article.tag}</span><time>{article.date}</time></div>
                   <h3>{article.title}</h3>
                   <p>{article.copy}</p>
@@ -756,7 +743,7 @@ export default function Home() {
           <div className="container contact-grid">
             <div className="contact-copy scroll-reveal">
               <p className="eyebrow light">{t.contact.eyebrow}</p>
-              <h2 id="contact-heading">{lines(t.contact.heading)}</h2>
+              <h2 id="contact-heading"><RevealLines text={t.contact.heading} /></h2>
               <p>{t.contact.copy}</p>
               <figure className="atmosphere-strip atmosphere-strip-contact"><img src="/assets/images/brooks-reception.jpg" alt="" /></figure>
               <a className="email-link" href="mailto:info@brooks-partners.com"><Mail size={19} /> info@brooks-partners.com</a>
