@@ -46,11 +46,96 @@ const content = {
       eyebrow: "Our growth engines",
       heading: "Focused on what\nmoves tomorrow.",
       intro: "Our work connects assets, infrastructure and technology to create a resilient foundation for growth in a changing world.",
-      detailsAria: "Learn more about",
+      more: "Read more",
+      less: "Read less",
       items: [
-        { number: "01", label: "REAL ESTATE", title: "Real Estate", copy: "Development, enhancement and asset management in high-potential locations, guided by a long-term view of quality, sustainability and community." },
-        { number: "02", label: "ENERGY", title: "Energy", copy: "Advancing renewable-energy infrastructure and efficient solutions that combine commercial growth with environmental responsibility." },
-        { number: "03", label: "DEFENSE & TECHNOLOGY", title: "Defense & Technology", copy: "Investing in advanced technology and partnerships that provide a precise response to the challenges of tomorrow." },
+        {
+          number: "01",
+          label: "REAL ESTATE & DEVELOPMENT",
+          title: "Real Estate & Development",
+          paragraphs: [
+            "Brooks Partners builds on an established real estate development platform through its affiliated partnerships, including Tuboul Brooks and Tuboul Brooks Daniel, specializing in large-scale urban renewal and residential developments across Israel.",
+            "With a portfolio of 2,800 residential units under development and 830 units currently being marketed, the group is involved in major residential and urban renewal projects across Israel.",
+            "Our portfolio includes flagship developments in Bat Yam, Givatayim, Azor, and Northern Israel, alongside additional residential projects in strategic locations.",
+            "Combining extensive development experience, financial expertise, and established industry partnerships, we focus on delivering high-quality residential projects and creating long-term value.",
+          ],
+        },
+        {
+          number: "02",
+          label: "ENERGY & INFRASTRUCTURE",
+          title: "Energy & Infrastructure",
+          paragraphs: [
+            "Brooks Partners develops and advances strategic energy and infrastructure projects across Greece and Europe, with a focus on renewable energy, power infrastructure, and data center development.",
+            "Through our dedicated Greek office and local professional team, we identify, structure, and promote investment opportunities in the energy and digital infrastructure sectors.",
+            "Our activities include solar and wind energy developments, alongside data center initiatives designed to meet the growing demand for reliable power and advanced computing infrastructure.",
+            "Working with international energy companies, technology providers, and strategic partners, we connect investment opportunities with technical expertise and long-term development capabilities.",
+          ],
+        },
+        {
+          number: "03",
+          label: "DEFENSE & TECHNOLOGY",
+          title: "Defense & Technology",
+          paragraphs: [
+            "Brooks Partners connects advanced defense technologies with operational expertise, strategic partnerships, and international market opportunities.",
+            "Our activities focus on unmanned aerial systems, autonomous technologies, artificial intelligence, and advanced solutions for defense, homeland security, and critical infrastructure protection.",
+            "Through our strategic collaboration with local European companies, we advance innovative aerial technologies and operational solutions across Greece, Israel, and additional European markets.",
+            "We also collaborate with leading Israeli defense-tech companies, integrating advanced command-and-control, AI-driven solutions, and intelligent systems for defense and civilian applications.",
+            "Combining extensive operational experience with international business development capabilities, we support technology integration, market expansion, and long-term strategic cooperation.",
+          ],
+        },
+      ],
+    },
+    team: {
+      eyebrow: "Our team",
+      heading: "The people behind\nthe partnership.",
+      competenciesLabel: "Core Competencies & Focus Areas",
+      more: "Read full profile",
+      less: "Show less",
+      members: [
+        {
+          number: "01",
+          initials: "HB",
+          name: "Haim Brooks Cohen",
+          role: "Founder & Chief Executive Officer",
+          bio: [
+            "Former Senior Department Head at the Israel Security Agency (Shin Bet), concluding a distinguished career in national security with senior leadership positions in Israel and abroad.",
+            "Extensive executive leadership experience, overseeing complex operations, multidisciplinary teams, and strategic initiatives in Israel and international environments.",
+            "Managing Partner of Tuboul Brooks and Tuboul Brooks Daniel, leading major real estate development and urban renewal projects across Israel.",
+            "Leads one of Bat Yam's largest urban renewal developments, alongside active projects in Givatayim, Azor, and Northern Israel.",
+            "Established an investment fund focused on wind energy, in collaboration with international energy companies, advancing renewable energy investment opportunities abroad.",
+            "Founder & CEO of Brooks Partners, leading the group's strategic direction, international partnerships, and expansion across Real Estate, Energy, Defense & Technology.",
+          ],
+          competencies: ["Executive Leadership", "National Security Expertise", "Real Estate Development", "Energy Investments & Development", "Strategic Partnerships"],
+        },
+        {
+          number: "02",
+          initials: "UB",
+          name: "Uri Bar Chaim, CPA",
+          role: "Partner, Deputy CEO & Chief Financial Officer",
+          bio: [
+            "20+ years of executive leadership in financial strategy, M&A, capital markets, and IPOs for public and private companies.",
+            "Proven track record in corporate expansion, scaling real estate development firms and driving multi-billion NIS project portfolios.",
+            "Member of Israel's National Directors Registry, with extensive corporate governance and board-level experience.",
+            "Former Senior Division Head at the Ministry of Construction & Housing, managing national assets and regulatory frameworks.",
+            "Expertise in financial transformation, banking partnerships, capital structure optimization, and advanced ERP & AI integration.",
+            "Advanced Academic Credentials: M.R.E. (Summa Cum Laude, Technion), M.B.A. (Tel Aviv University), and B.A. in Accounting & Information Systems (Cum Laude, JCT & The Hebrew University of Jerusalem).",
+          ],
+          competencies: ["Financial Strategy", "M&A & Capital Markets", "Real Estate & Development", "Corporate Governance", "Executive Leadership"],
+        },
+        {
+          number: "03",
+          initials: "IB",
+          name: "Iftach Brooks",
+          role: "Business Development & Operational Integration",
+          bio: [
+            "12 years of service in specialized units of the Israeli Air Force, with extensive experience across diverse operational environments.",
+            "Led multidisciplinary teams and organizational development initiatives, including the establishment and growth of new operational units.",
+            "Managed the integration of advanced technological capabilities, overseeing complex implementation processes and operational readiness.",
+            "Bachelor's degree in Economics, Entrepreneurship & Data from Reichman University, combining analytical, business, and technological expertise.",
+            "Focused on international business development and strategic partnerships at Brooks Partners, connecting operational expertise, innovative technologies, and commercial opportunities.",
+          ],
+          competencies: ["Operational Leadership", "Technology Integration", "Organizational Development", "Business Development", "Strategic Partnerships"],
+        },
       ],
     },
     values: {
@@ -58,9 +143,9 @@ const content = {
       heading: "What stays constant\nwhen everything changes.",
       items: [
         { number: "01", title: "Trust", copy: "The foundation of every long-term relationship." },
-        { number: "02", title: "Excellence", copy: "An uncompromising standard in selection, execution and outcome." },
-        { number: "03", title: "Simplicity", copy: "Clear thinking that makes confident progress possible." },
-        { number: "04", title: "People", copy: "Good people are the force behind every partnership." },
+        { number: "02", title: "Excellence", copy: "Excellence is not just our goal. It defines how we work." },
+        { number: "03", title: "Simplicity", copy: "We make the complex clear, so every step forward is a confident one." },
+        { number: "04", title: "People", copy: "People are the heart of every partnership — and we put them at the center." },
         { number: "05", title: "Innovation", copy: "An openness to opportunity and new ways to create value." },
       ],
     },
@@ -132,11 +217,96 @@ const content = {
       eyebrow: "מנועי הצמיחה שלנו",
       heading: "מתמחים במה\nשמניע את המחר.",
       intro: "הפעילות שלנו מחברת בין נכסים, תשתיות ויכולות טכנולוגיות — כדי לייצר בסיס יציב לצמיחה במציאות משתנה.",
-      detailsAria: "לפרטים על תחום",
+      more: "קראו עוד",
+      less: "הצגת פחות",
       items: [
-        { number: "01", label: "REAL ESTATE", title: "נדל״ן", copy: "ייזום, השבחה וניהול נכסים באזורים בעלי פוטנציאל, מתוך ראייה ארוכת טווח של איכות, קיימות וקהילה." },
-        { number: "02", label: "ENERGY", title: "אנרגיה", copy: "קידום תשתיות אנרגיה מתחדשת ופתרונות יעילים המשלבים צמיחה עסקית עם אחריות סביבתית." },
-        { number: "03", label: "DEFENSE & TECHNOLOGY", title: "ביטחון וטכנולוגיה", copy: "השקעה ביכולות טכנולוגיות מתקדמות ובשותפויות המאפשרות מענה מדויק לאתגרי העתיד." },
+        {
+          number: "01",
+          label: "REAL ESTATE & DEVELOPMENT",
+          title: "נדל״ן וייזום",
+          paragraphs: [
+            "Brooks Partners נשענת על פלטפורמת ייזום נדל״ן מבוססת באמצעות שותפויותיה, ובהן טובול ברוקס וטובול ברוקס דניאל, המתמחות בפרויקטים רחבי היקף של התחדשות עירונית ומגורים ברחבי ישראל.",
+            "עם 2,800 יחידות דיור בשלבי פיתוח ו־830 יחידות בשיווק, הקבוצה מעורבת בפרויקטים מרכזיים של מגורים והתחדשות עירונית ברחבי הארץ.",
+            "הפורטפוליו שלנו כולל פרויקטי דגל בבת ים, בגבעתיים, באזור ובצפון הארץ, לצד פרויקטי מגורים נוספים במיקומים אסטרטגיים.",
+            "בשילוב של ניסיון ייזום עשיר, מומחיות פיננסית ושותפויות מבוססות בענף, אנו מתמקדים בהקמת פרויקטי מגורים איכותיים וביצירת ערך לטווח ארוך.",
+          ],
+        },
+        {
+          number: "02",
+          label: "ENERGY & INFRASTRUCTURE",
+          title: "אנרגיה ותשתיות",
+          paragraphs: [
+            "Brooks Partners מפתחת ומקדמת פרויקטים אסטרטגיים בתחומי האנרגיה והתשתיות ביוון ובאירופה, בדגש על אנרגיה מתחדשת, תשתיות חשמל ופיתוח מרכזי נתונים.",
+            "באמצעות משרדנו ביוון וצוות מקצועי מקומי, אנו מאתרים, מגבשים ומקדמים הזדמנויות השקעה בתחומי האנרגיה והתשתיות הדיגיטליות.",
+            "פעילותנו כוללת פיתוח פרויקטים של אנרגיה סולארית ואנרגיית רוח, לצד מיזמי מרכזי נתונים שנועדו לתת מענה לביקוש הגובר לאספקת חשמל אמינה ולתשתיות מחשוב מתקדמות.",
+            "בעבודה משותפת עם חברות אנרגיה בינלאומיות, ספקי טכנולוגיה ושותפים אסטרטגיים, אנו מחברים בין הזדמנויות השקעה לבין מומחיות טכנית ויכולות פיתוח ארוכות טווח.",
+          ],
+        },
+        {
+          number: "03",
+          label: "DEFENSE & TECHNOLOGY",
+          title: "ביטחון וטכנולוגיה",
+          paragraphs: [
+            "Brooks Partners מחברת בין טכנולוגיות ביטחוניות מתקדמות לבין מומחיות מבצעית, שותפויות אסטרטגיות והזדמנויות בשווקים בינלאומיים.",
+            "פעילותנו מתמקדת במערכות אוויריות בלתי מאוישות, בטכנולוגיות אוטונומיות, בבינה מלאכותית ובפתרונות מתקדמים לביטחון, לביטחון המולדת ולהגנה על תשתיות קריטיות.",
+            "באמצעות שיתוף פעולה אסטרטגי עם חברות אירופיות מקומיות, אנו מקדמים טכנולוגיות אוויריות חדשניות ופתרונות מבצעיים ביוון, בישראל ובשווקים נוספים באירופה.",
+            "בנוסף, אנו משתפים פעולה עם חברות דיפנס־טק ישראליות מובילות, ומשלבים מערכות שליטה ובקרה מתקדמות, פתרונות מבוססי בינה מלאכותית ומערכות חכמות ליישומים ביטחוניים ואזרחיים.",
+            "בשילוב של ניסיון מבצעי עשיר ויכולות פיתוח עסקי בינלאומי, אנו תומכים בהטמעת טכנולוגיות, בהתרחבות לשווקים חדשים ובשיתופי פעולה אסטרטגיים ארוכי טווח.",
+          ],
+        },
+      ],
+    },
+    team: {
+      eyebrow: "הצוות שלנו",
+      heading: "האנשים שמאחורי\nהשותפות.",
+      competenciesLabel: "תחומי מומחיות ומיקוד",
+      more: "לפרופיל המלא",
+      less: "הצגת פחות",
+      members: [
+        {
+          number: "01",
+          initials: "HB",
+          name: "חיים ברוקס כהן",
+          role: "מייסד ומנכ״ל",
+          bio: [
+            "לשעבר ראש אגף בכיר בשירות הביטחון הכללי (שב״כ); סיים קריירה מוערכת בתחום הביטחון הלאומי, שבמהלכה מילא תפקידי הנהגה בכירים בישראל ובחו״ל.",
+            "ניסיון ניהולי בכיר ורחב בהובלת מבצעים מורכבים, צוותים רב־תחומיים ומהלכים אסטרטגיים בישראל ובזירה הבינלאומית.",
+            "שותף מנהל בטובול ברוקס ובטובול ברוקס דניאל, המובילות פרויקטים מרכזיים של ייזום נדל״ן והתחדשות עירונית ברחבי ישראל.",
+            "מוביל את אחד ממיזמי ההתחדשות העירונית הגדולים בבת ים, לצד פרויקטים פעילים בגבעתיים, באזור ובצפון הארץ.",
+            "הקים קרן השקעות המתמקדת באנרגיית רוח, בשיתוף חברות אנרגיה בינלאומיות, לקידום הזדמנויות השקעה באנרגיה מתחדשת בחו״ל.",
+            "מייסד ומנכ״ל Brooks Partners; מוביל את הכיוון האסטרטגי של הקבוצה, את שותפויותיה הבינלאומיות ואת התרחבותה בתחומי הנדל״ן, האנרגיה, הביטחון והטכנולוגיה.",
+          ],
+          competencies: ["מנהיגות בכירה", "מומחיות בביטחון לאומי", "ייזום נדל״ן", "השקעות ופיתוח בתחום האנרגיה", "שותפויות אסטרטגיות"],
+        },
+        {
+          number: "02",
+          initials: "UB",
+          name: "אורי בר חיים, רו״ח",
+          role: "שותף, משנה למנכ״ל וסמנכ״ל כספים",
+          bio: [
+            "למעלה מ־20 שנות ניסיון ניהולי בכיר באסטרטגיה פיננסית, מיזוגים ורכישות, שוק ההון והנפקות ראשונות לציבור (IPO), בחברות ציבוריות ופרטיות.",
+            "רקורד מוכח בהתרחבות עסקית, בהצמחת חברות ייזום נדל״ן ובהובלת פורטפוליו פרויקטים בהיקף של מיליארדי שקלים.",
+            "חבר בנבחרת הדירקטורים הלאומית, בעל ניסיון רב בממשל תאגידי ובעבודת דירקטוריונים.",
+            "לשעבר מנהל אגף בכיר במשרד הבינוי והשיכון, שם ניהל נכסים לאומיים ומסגרות רגולטוריות.",
+            "מומחיות בטרנספורמציה פיננסית, בשותפויות עם המערכת הבנקאית, באופטימיזציה של מבנה ההון ובהטמעת מערכות ERP ובינה מלאכותית מתקדמות.",
+            "השכלה אקדמית מתקדמת: תואר שני בנדל״ן (M.R.E., בהצטיינות יתרה, הטכניון), תואר שני במנהל עסקים (M.B.A., אוניברסיטת תל אביב) ותואר ראשון בחשבונאות ומערכות מידע (בהצטיינות, המרכז האקדמי לב והאוניברסיטה העברית בירושלים).",
+          ],
+          competencies: ["אסטרטגיה פיננסית", "מיזוגים ורכישות ושוק ההון", "נדל״ן וייזום", "ממשל תאגידי", "מנהיגות בכירה"],
+        },
+        {
+          number: "03",
+          initials: "IB",
+          name: "יפתח ברוקס",
+          role: "פיתוח עסקי ואינטגרציה מבצעית",
+          bio: [
+            "12 שנות שירות ביחידות מיוחדות של חיל האוויר הישראלי, עם ניסיון רב במגוון סביבות מבצעיות.",
+            "הוביל צוותים רב־תחומיים ותהליכי פיתוח ארגוני, לרבות הקמה והצמחה של יחידות מבצעיות חדשות.",
+            "ניהל שילוב של יכולות טכנולוגיות מתקדמות, תוך פיקוח על תהליכי הטמעה מורכבים ועל הכשירות המבצעית.",
+            "בעל תואר ראשון בכלכלה, יזמות ודאטה מאוניברסיטת רייכמן, המשלב מומחיות אנליטית, עסקית וטכנולוגית.",
+            "מתמקד בפיתוח עסקי בינלאומי ובשותפויות אסטרטגיות ב־Brooks Partners, ומחבר בין מומחיות מבצעית, טכנולוגיות חדשניות והזדמנויות מסחריות.",
+          ],
+          competencies: ["מנהיגות מבצעית", "אינטגרציה טכנולוגית", "פיתוח ארגוני", "פיתוח עסקי", "שותפויות אסטרטגיות"],
+        },
       ],
     },
     values: {
@@ -144,9 +314,9 @@ const content = {
       heading: "מה נשאר קבוע\nכשכל השאר משתנה.",
       items: [
         { number: "01", title: "אמון", copy: "הבסיס לכל מערכת יחסים ארוכת טווח." },
-        { number: "02", title: "מצוינות", copy: "סטנדרט בלתי מתפשר בבחירה, בביצוע ובתוצאה." },
-        { number: "03", title: "פשטות", copy: "חשיבה בהירה שמאפשרת להתקדם בביטחון." },
-        { number: "04", title: "אנשים", copy: "אנשים טובים הם הכוח שמאחורי כל שותפות." },
+        { number: "02", title: "מצוינות", copy: "מצוינות עבורנו אינה יעד, אלא הדרך שבה אנחנו פועלים." },
+        { number: "03", title: "פשטות", copy: "מפשטים את המורכב – ומתקדמים בביטחון." },
+        { number: "04", title: "אנשים", copy: "אנשים הם הלב של כל שותפות – ואנחנו שמים אותם במרכז." },
         { number: "05", title: "חדשנות", copy: "פתיחות להזדמנויות ולדרכים חדשות ליצור ערך." },
       ],
     },
@@ -207,6 +377,11 @@ const divisionImages = [
 
 const divisionIcons = [Building2, Leaf, ShieldCheck];
 
+// Portraits for the team section, in the same order as `team.members`.
+// Drop the files into client/public/assets/images/team/ and replace `null` with the path,
+// e.g. "/assets/images/team/haim-brooks-cohen.jpg". Until then a monogram placeholder is shown.
+const teamPhotos: (string | null)[] = [null, null, null];
+
 function lines(text: string) {
   const parts = text.split("\n");
   return parts.map((part, index) => (
@@ -226,6 +401,8 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [sent, setSent] = useState(false);
+  const [openDivisions, setOpenDivisions] = useState<string[]>([]);
+  const [openBios, setOpenBios] = useState<string[]>([]);
   const [isMuted, setIsMuted] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [isMobileVideo, setIsMobileVideo] = useState(() => window.matchMedia("(max-width: 900px)").matches);
@@ -275,6 +452,8 @@ export default function Home() {
       ? "BROOKS & PARTNERS | שיתופי פעולה גלובליים, מבוססי אמון"
       : "BROOKS & PARTNERS | Global Cooperation, Built on Trust.";
   }, [isHebrew, language]);
+
+  const toggleIn = (list: string[], id: string) => (list.includes(id) ? list.filter((item) => item !== id) : [...list, id]);
 
   const navigate = (target: string) => {
     setMenuOpen(false);
@@ -398,6 +577,58 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="team-section" id="team" aria-labelledby="team-heading">
+          <div className="container">
+            <div className="team-top scroll-reveal">
+              <p className="eyebrow">{t.team.eyebrow}</p>
+              <h2 id="team-heading">{lines(t.team.heading)}</h2>
+            </div>
+            <div className="team-grid">
+              {t.team.members.map((member, index) => {
+                const isOpen = openBios.includes(member.number);
+                const photo = teamPhotos[index];
+                const bioId = `team-bio-${member.number}`;
+                return (
+                  <article className={`team-card scroll-reveal scroll-delay-${index + 1}`} key={member.number}>
+                    <div className="team-head">
+                      <div className="team-photo">
+                        {photo ? <img src={photo} alt={member.name} loading="lazy" /> : <span aria-hidden="true">{member.initials}</span>}
+                      </div>
+                      <div className="team-id">
+                        <span className="team-number">{member.number}</span>
+                        <h3>{member.name}</h3>
+                        <p className="team-role">{member.role}</p>
+                      </div>
+                    </div>
+                    <p className="team-label">{t.team.competenciesLabel}</p>
+                    <ul className="team-tags">
+                      {member.competencies.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                    <div className={`expandable ${isOpen ? "open" : ""}`} id={bioId}>
+                      <div className="expandable-inner">
+                        <ul className="team-bio">
+                          {member.bio.map((item) => <li key={item}>{item}</li>)}
+                        </ul>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="more-toggle"
+                      aria-expanded={isOpen}
+                      aria-controls={bioId}
+                      onClick={() => setOpenBios((current) => toggleIn(current, member.number))}
+                    >
+                      <span>{isOpen ? t.team.less : t.team.more}</span>
+                      <i aria-hidden="true"><ChevronDown size={17} /></i>
+                      <span className="sr-only"> — {member.name}</span>
+                    </button>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <section className="divisions-section" id="divisions" aria-labelledby="divisions-heading">
           <div className="container section-heading-row scroll-reveal">
             <div>
@@ -409,17 +640,35 @@ export default function Home() {
           <div className="division-grid">
             {t.divisions.items.map((division, index) => {
               const Icon = divisionIcons[index];
+              const isOpen = openDivisions.includes(division.number);
+              const [firstParagraph, ...moreParagraphs] = division.paragraphs;
+              const detailsId = `division-details-${division.number}`;
               return (
-                <article className={`division-card scroll-reveal scroll-delay-${index + 1}`} key={division.number}>
+                <article className={`division-card scroll-reveal scroll-delay-${index + 1} ${isOpen ? "is-open" : ""}`} key={division.number}>
                   <img src={divisionImages[index]} alt="" />
                   <div className="division-shade" />
                   <div className="division-content">
                     <div className="division-topline"><span>{division.number}</span><Icon size={20} /></div>
-                    <div>
+                    <div className="division-body">
                       <p className="division-english">{division.label}</p>
                       <h3>{division.title}</h3>
-                      <p className="division-copy">{division.copy}</p>
-                      <button className="round-arrow" aria-label={`${t.divisions.detailsAria} ${division.title}`} onClick={() => navigate("contact")}><DirectionArrow size={20} /></button>
+                      <p className="division-copy">{firstParagraph}</p>
+                      <div className={`expandable ${isOpen ? "open" : ""}`} id={detailsId}>
+                        <div className="expandable-inner">
+                          {moreParagraphs.map((paragraph) => <p className="division-copy" key={paragraph}>{paragraph}</p>)}
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className="more-toggle more-toggle-light"
+                        aria-expanded={isOpen}
+                        aria-controls={detailsId}
+                        onClick={() => setOpenDivisions((current) => toggleIn(current, division.number))}
+                      >
+                        <span>{isOpen ? t.divisions.less : t.divisions.more}</span>
+                        <i aria-hidden="true"><ChevronDown size={17} /></i>
+                        <span className="sr-only"> — {division.title}</span>
+                      </button>
                     </div>
                   </div>
                 </article>
