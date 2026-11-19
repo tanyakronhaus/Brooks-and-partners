@@ -396,7 +396,7 @@ const divisionIcons = [Building2, Leaf, ShieldCheck];
 // Portraits for the team section, in the same order as `team.members`.
 // Drop the files into client/public/assets/images/team/ and replace `null` with the path,
 // e.g. "/assets/images/team/haim-brooks-cohen.jpg". Until then a monogram placeholder is shown.
-const teamPhotos: (string | null)[] = [null, null, null];
+const teamPhotos: (string | null)[] = ["/assets/images/team/haim-brooks-cohen.jpg", "/assets/images/team/uri-bar-chaim.jpg", null];
 
 const hebrewPattern = /[\u0590-\u05FF]/;
 

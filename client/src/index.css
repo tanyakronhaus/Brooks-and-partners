@@ -192,6 +192,7 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 .team-head { width: 100%; }
 .team-photo { position: relative; display: grid; width: 100%; aspect-ratio: 4 / 5; place-items: center; overflow: hidden; background: linear-gradient(160deg, #0d3554 0%, var(--navy-deep) 100%); }
 .team-photo::after { content: ""; position: absolute; inset: 12px; border: 1px solid rgba(199,169,113,.38); pointer-events: none; }
+.team-photo:has(img)::after { display: none; }
 .team-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .team-photo span { color: var(--gold); font-size: clamp(44px, 5vw, 68px); font-weight: 300; letter-spacing: .08em; direction: ltr; }
 .team-id { padding-top: 22px; }
