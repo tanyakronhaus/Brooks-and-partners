@@ -188,12 +188,14 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
 .team-section > .container { padding-top: 104px; border-top: 1px solid rgba(9,39,68,.16); }
 .team-top { margin-bottom: 62px; text-align: start; }
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 34px); }
-.team-card { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(26px, 2.6vw, 38px); border: 1px solid rgba(9,39,68,.1); background: #fff; box-shadow: 0 18px 44px rgba(8,40,66,.06); text-align: start; transition: box-shadow 320ms var(--ease-out), translate 320ms var(--ease-out), border-color 320ms var(--ease-out); }
-.team-card:hover { border-color: rgba(199,169,113,.6); box-shadow: 0 26px 60px rgba(8,40,66,.11); translate: 0 -4px; }
+.team-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(26px, 2.6vw, 38px); border: 1px solid rgba(9,39,68,.1); background: #fff; box-shadow: 0 18px 44px rgba(8,40,66,.06); text-align: start; transition: box-shadow 360ms var(--ease-out), scale 360ms var(--ease-out), border-color 360ms var(--ease-out); }
+@media (hover: hover) {
+  .team-card:hover { z-index: 1; border-color: rgba(8,40,66,.55); box-shadow: 0 30px 70px rgba(8,40,66,.2); scale: 1.035; }
+}
 .team-head { width: 100%; }
-.team-photo { position: relative; display: grid; width: 124px; height: 124px; margin: 7px; place-items: center; overflow: hidden; border-radius: 50%; background: linear-gradient(160deg, #0d3554 0%, var(--navy-deep) 100%); box-shadow: 0 0 0 1px var(--gold), 0 0 0 6px #fff, 0 0 0 7px rgba(199,169,113,.35); }
+.team-photo { position: relative; display: grid; width: 176px; height: 176px; margin: 0 auto; place-items: center; overflow: hidden; border-radius: 50%; background: linear-gradient(160deg, #0d3554 0%, var(--navy-deep) 100%); }
 .team-photo img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center 18%; }
-.team-photo span { color: var(--gold); font-size: 34px; font-weight: 300; letter-spacing: .08em; direction: ltr; }
+.team-photo span { color: var(--gold); font-size: 46px; font-weight: 300; letter-spacing: .08em; direction: ltr; }
 .team-id { padding-top: 24px; }
 .team-card h3 { margin-bottom: 6px; color: var(--navy); font-size: 25px; line-height: 1.15; }
 .team-role { margin: 0; color: #9e8354; font-size: 15px; font-weight: 500 !important; line-height: 1.5; }
@@ -367,6 +369,10 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
   .is-visible .division-topline { opacity: 1; }
 
   /* Team: portrait wipes in, profile lines slide in from the reading edge, tags pop in sequence. */
+  .team-card.scroll-reveal { transform: translateY(46px) scale(.95); transition: opacity 800ms var(--ease-out), transform 1000ms var(--ease-out), box-shadow 360ms var(--ease-out), scale 360ms var(--ease-out), border-color 360ms var(--ease-out); transition-delay: var(--card-delay, 0ms), var(--card-delay, 0ms), 0s, 0s, 0s; }
+  .team-card.scroll-reveal.is-visible { transform: none; }
+  .team-card:nth-child(2) { --card-delay: 130ms; }
+  .team-card:nth-child(3) { --card-delay: 260ms; }
   .team-head.scroll-reveal { opacity: 1; transform: none; }
   .team-head .team-photo { opacity: 0; scale: .72; transition: opacity 800ms var(--ease-out), scale 1100ms var(--ease-out); transition-delay: inherit; }
   .team-head.is-visible .team-photo { opacity: 1; scale: 1; }
@@ -456,8 +462,8 @@ h2 { margin-bottom: 0; color: var(--navy); font-size: clamp(39px, 4.6vw, 67px); 
   .division-body { margin-top: 140px; }
   .division-copy { max-width: 560px; }
   .team-grid { grid-template-columns: 1fr; gap: 20px; }
-  .team-photo { width: 108px; height: 108px; }
-  .team-photo span { font-size: 30px; }
+  .team-photo { width: 156px; height: 156px; }
+  .team-photo span { font-size: 40px; }
   .team-bio { max-width: 640px; }
   .division-card { border-bottom: 1px solid rgba(255,255,255,.2); border-left: 0; }
   /* Below desktop the values become a simple grid: a rule above each card, no side dividers. */

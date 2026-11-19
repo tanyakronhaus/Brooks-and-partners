@@ -700,7 +700,7 @@ export default function Home() {
               {t.team.members.map((member, index) => {
                 const photo = teamPhotos[index];
                 return (
-                  <article className="team-card" key={index}>
+                  <article className="team-card scroll-reveal" key={index}>
                     <div className={`team-head scroll-reveal scroll-delay-${index + 1}`}>
                       <div className="team-photo">
                         {photo ? <img src={photo} alt={member.name} loading="lazy" /> : <span aria-hidden="true">{member.initials}</span>}
