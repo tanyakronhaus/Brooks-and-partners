@@ -146,7 +146,8 @@ const content = {
       ],
     },
     partners: {
-      eyebrow: "Partnerships & Investors",
+      eyebrow: "Partnerships",
+      logosAria: "Our partners",
       heading: "Shared value begins\nwith transparency.",
       copy: "We believe a strong partnership is the foundation for growth. That is why we act with transparency, responsibility and long-term thinking — toward our shareholders, partners and the communities around us.",
       button: "Speak with Investor Relations",
@@ -313,7 +314,8 @@ const content = {
       ],
     },
     partners: {
-      eyebrow: "שותפויות ומשקיעים",
+      eyebrow: "שותפויות",
+      logosAria: "השותפים שלנו",
       heading: "ערך משותף\nמתחיל בשקיפות.",
       copy: "אנו מאמינים כי שותפות טובה היא תשתית לצמיחה. לכן אנחנו פועלים בשקיפות, באחריות ובחשיבה ארוכת טווח — מול בעלי המניות, השותפים והקהילות שסביבנו.",
       button: "ליצירת קשר עם קשרי משקיעים",
@@ -365,6 +367,28 @@ const divisionImages = [
   "/assets/images/real-estate.jpg",
   "/assets/images/energy.jpg",
   "/assets/images/defense.jpg",
+];
+
+// Partner logos for the moving strip. `height` is the display height in px on desktop,
+// tuned per logo so wide wordmarks and compact emblems carry similar visual weight.
+const partnerLogos = [
+  { file: "tubul.svg", name: "Tubul Group", height: 50 },
+  { file: "bank-hapoalim.svg", name: "Bank Hapoalim", height: 30 },
+  { file: "leumi-partners.svg", name: "Leumi Partners", height: 50 },
+  { file: "electra.png", name: "Electra", height: 44 },
+  { file: "dragosta-energy.png", name: "Dragosta Energy", height: 68 },
+  { file: "erm.svg", name: "ERM", height: 38 },
+  { file: "mprest.svg", name: "mPrest", height: 46 },
+  { file: "broadsat-technologies.png", name: "Broadsat Technologies", height: 50 },
+  { file: "nawi-group.svg", name: "Nawi Group", height: 38 },
+  { file: "reality.svg", name: "Reality", height: 40 },
+  { file: "margolin.png", name: "I. Margolin", height: 80 },
+  { file: "arnon-tadmor-levy.svg", name: "Arnon, Tadmor-Levy", height: 58 },
+  { file: "gilboa-engineers.png", name: "Gilboa Engineers", height: 84 },
+  { file: "david-engineers.png", name: "David Engineers", height: 50 },
+  { file: "rozio-architects.png", name: "Rozio Architects & Urban Planners", height: 66 },
+  { file: "miloslavsky-architects.png", name: "Miloslavsky Architects", height: 34 },
+  { file: "tell-david.png", name: "Tell David", height: 30 },
 ];
 
 const divisionIcons = [Building2, Leaf, ShieldCheck];
@@ -708,14 +732,20 @@ export default function Home() {
 
         <section className="updates-section" id="updates" aria-labelledby="updates-heading">
           <div className="container">
-            <div className="desktop-office-marquee" aria-hidden="true">
-              <div className="desktop-office-marquee-track">
-                <img src="/assets/images/brooks-wall-sign.jpg" alt="" />
-                <img src="/assets/images/brooks-meeting-room.jpg" alt="" />
-                <img src="/assets/images/brooks-reception.jpg" alt="" />
-                <img src="/assets/images/brooks-wall-sign.jpg" alt="" />
-                <img src="/assets/images/brooks-meeting-room.jpg" alt="" />
-                <img src="/assets/images/brooks-reception.jpg" alt="" />
+            <div className="partner-logos" role="group" aria-label={t.partners.logosAria}>
+              <div className="partner-logos-track">
+                {[0, 1].map((copy) => (
+                  <div className="partner-logos-set" key={copy} aria-hidden={copy === 1}>
+                    {partnerLogos.map((logo) => (
+                      <img
+                        key={logo.file}
+                        src={`/assets/images/partners/${logo.file}`}
+                        alt={copy === 0 ? logo.name : ""}
+                        style={{ "--logo-h": `${logo.height}px` } as CSSProperties}
+                      />
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="updates-heading scroll-reveal">
