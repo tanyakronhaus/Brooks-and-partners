@@ -89,7 +89,6 @@ const content = {
       competenciesLabel: "Core Competencies & Focus Areas",
       members: [
         {
-          number: "01",
           initials: "HB",
           name: "Haim Brooks Cohen",
           role: "Founder & Chief Executive Officer",
@@ -104,7 +103,6 @@ const content = {
           competencies: ["Executive Leadership", "National Security Expertise", "Real Estate Development", "Energy Investments & Development", "Strategic Partnerships"],
         },
         {
-          number: "02",
           initials: "UB",
           name: "Uri Bar Chaim, CPA",
           role: "Partner, Deputy CEO & Chief Financial Officer",
@@ -119,7 +117,6 @@ const content = {
           competencies: ["Financial Strategy", "M&A & Capital Markets", "Real Estate & Development", "Corporate Governance", "Executive Leadership"],
         },
         {
-          number: "03",
           initials: "IB",
           name: "Iftach Brooks",
           role: "Business Development & Operational Integration",
@@ -257,7 +254,6 @@ const content = {
       competenciesLabel: "תחומי מומחיות ומיקוד",
       members: [
         {
-          number: "01",
           initials: "HB",
           name: "חיים ברוקס כהן",
           role: "מייסד ומנכ״ל",
@@ -272,7 +268,6 @@ const content = {
           competencies: ["מנהיגות בכירה", "מומחיות בביטחון לאומי", "ייזום נדל״ן", "השקעות ופיתוח בתחום האנרגיה", "שותפויות אסטרטגיות"],
         },
         {
-          number: "02",
           initials: "UB",
           name: "אורי בר חיים, רו״ח",
           role: "שותף, משנה למנכ״ל וסמנכ״ל כספים",
@@ -287,7 +282,6 @@ const content = {
           competencies: ["אסטרטגיה פיננסית", "מיזוגים ורכישות ושוק ההון", "נדל״ן וייזום", "ממשל תאגידי", "מנהיגות בכירה"],
         },
         {
-          number: "03",
           initials: "IB",
           name: "יפתח ברוקס",
           role: "פיתוח עסקי ואינטגרציה מבצעית",
@@ -371,24 +365,26 @@ const divisionImages = [
 
 // Partner logos for the moving strip. `height` is the display height in px on desktop,
 // tuned per logo so wide wordmarks and compact emblems carry similar visual weight.
+// `ratio` is width / height; every logo gets an explicit size because Safari collapses
+// auto-sized SVGs that have no intrinsic dimensions.
 const partnerLogos = [
-  { file: "tubul.svg", name: "Tubul Group", height: 50 },
-  { file: "bank-hapoalim.svg", name: "Bank Hapoalim", height: 30 },
-  { file: "leumi-partners.svg", name: "Leumi Partners", height: 50 },
-  { file: "electra.png", name: "Electra", height: 44 },
-  { file: "dragosta-energy.png", name: "Dragosta Energy", height: 68 },
-  { file: "erm.svg", name: "ERM", height: 38 },
-  { file: "mprest.svg", name: "mPrest", height: 46 },
-  { file: "broadsat-technologies.png", name: "Broadsat Technologies", height: 50 },
-  { file: "nawi-group.svg", name: "Nawi Group", height: 38 },
-  { file: "reality.svg", name: "Reality", height: 40 },
-  { file: "margolin.png", name: "I. Margolin", height: 80 },
-  { file: "arnon-tadmor-levy.svg", name: "Arnon, Tadmor-Levy", height: 58 },
-  { file: "gilboa-engineers.png", name: "Gilboa Engineers", height: 84 },
-  { file: "david-engineers.png", name: "David Engineers", height: 50 },
-  { file: "rozio-architects.png", name: "Rozio Architects & Urban Planners", height: 66 },
-  { file: "miloslavsky-architects.png", name: "Miloslavsky Architects", height: 34 },
-  { file: "tell-david.png", name: "Tell David", height: 30 },
+  { file: "tubul.svg", name: "Tubul Group", height: 50, ratio: 2.9 },
+  { file: "bank-hapoalim.svg", name: "Bank Hapoalim", height: 30, ratio: 5.923 },
+  { file: "leumi-partners.svg", name: "Leumi Partners", height: 50, ratio: 3.119 },
+  { file: "electra.png", name: "Electra", height: 44, ratio: 4.034 },
+  { file: "dragosta-energy.png", name: "Dragosta Energy", height: 68, ratio: 2.53 },
+  { file: "erm.svg", name: "ERM", height: 38, ratio: 3.241 },
+  { file: "mprest.svg", name: "mPrest", height: 46, ratio: 2.889 },
+  { file: "broadsat-technologies.png", name: "Broadsat Technologies", height: 50, ratio: 3.315 },
+  { file: "nawi-group.svg", name: "Nawi Group", height: 38, ratio: 5.346 },
+  { file: "reality.svg", name: "Reality", height: 40, ratio: 5.727 },
+  { file: "margolin.png", name: "I. Margolin", height: 80, ratio: 1.0 },
+  { file: "arnon-tadmor-levy.svg", name: "Arnon, Tadmor-Levy", height: 58, ratio: 3.095 },
+  { file: "gilboa-engineers.png", name: "Gilboa Engineers", height: 84, ratio: 1.019 },
+  { file: "david-engineers.png", name: "David Engineers", height: 50, ratio: 3.415 },
+  { file: "rozio-architects.png", name: "Rozio Architects & Urban Planners", height: 66, ratio: 2.691 },
+  { file: "miloslavsky-architects.png", name: "Miloslavsky Architects", height: 34, ratio: 5.0 },
+  { file: "tell-david.png", name: "Tell David", height: 30, ratio: 5.647 },
 ];
 
 const divisionIcons = [Building2, Leaf, ShieldCheck];
@@ -399,6 +395,79 @@ const divisionIcons = [Building2, Leaf, ShieldCheck];
 const teamPhotos: (string | null)[] = ["/assets/images/team/haim-brooks-cohen.jpg", "/assets/images/team/uri-bar-chaim.jpg", null];
 
 const hebrewPattern = /[\u0590-\u05FF]/;
+
+/**
+ * Looping logo strip. The offset is advanced from JavaScript rather than a CSS keyframe animation:
+ * the track is several thousand pixels wide, and iOS Safari leaves parts of such a layer unpainted
+ * while a compositor-only animation is running.
+ */
+function LogoMarquee({ label, reverse }: { label: string; reverse: boolean }) {
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+    if (!viewport || !track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let frame = 0;
+    let last = 0;
+    let offset = 0;
+    let visible = true;
+    let hovered = false;
+
+    const step = (now: number) => {
+      const setWidth = (track.firstElementChild as HTMLElement | null)?.offsetWidth ?? 0;
+      const delta = last ? Math.min(now - last, 64) : 0;
+      last = now;
+      if (setWidth > 0 && visible && !hovered) {
+        const speed = window.innerWidth <= 620 ? 42 : 56; // px per second
+        offset = (offset + (delta / 1000) * speed) % setWidth;
+        const shift = reverse ? setWidth - offset : offset;
+        track.style.transform = `translate3d(${(-shift).toFixed(2)}px, 0, 0)`;
+      }
+      frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { rootMargin: "200px 0px" });
+    observer.observe(viewport);
+    const onEnter = () => { hovered = true; };
+    const onLeave = () => { hovered = false; };
+    viewport.addEventListener("mouseenter", onEnter);
+    viewport.addEventListener("mouseleave", onLeave);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      viewport.removeEventListener("mouseenter", onEnter);
+      viewport.removeEventListener("mouseleave", onLeave);
+    };
+  }, [reverse]);
+
+  return (
+    <div className="partner-logos" role="group" aria-label={label} ref={viewportRef}>
+      <div className="partner-logos-track" ref={trackRef}>
+        {[0, 1, 2].map((copy) => (
+          <div className="partner-logos-set" key={copy} aria-hidden={copy > 0}>
+            {partnerLogos.map((logo) => (
+              <img
+                key={logo.file}
+                src={`/assets/images/partners/${logo.file}`}
+                alt={copy === 0 ? logo.name : ""}
+                width={Math.round(logo.height * logo.ratio)}
+                height={logo.height}
+                decoding="async"
+                style={{ "--logo-h": `${logo.height}px`, "--logo-ratio": logo.ratio } as CSSProperties}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 /** Heading split into lines; each line slides up from behind a mask when its section scrolls into view. */
 function RevealLines({ text }: { text: string }) {
@@ -628,13 +697,12 @@ export default function Home() {
               {t.team.members.map((member, index) => {
                 const photo = teamPhotos[index];
                 return (
-                  <article className="team-card" key={member.number}>
+                  <article className="team-card" key={index}>
                     <div className={`team-head scroll-reveal scroll-delay-${index + 1}`}>
                       <div className="team-photo">
                         {photo ? <img src={photo} alt={member.name} loading="lazy" /> : <span aria-hidden="true">{member.initials}</span>}
                       </div>
                       <div className="team-id">
-                        <span className="team-number">{member.number}</span>
                         <h3>{member.name}</h3>
                         <p className="team-role">{member.role}</p>
                       </div>
@@ -732,22 +800,7 @@ export default function Home() {
 
         <section className="updates-section" id="updates" aria-labelledby="updates-heading">
           <div className="container">
-            <div className="partner-logos" role="group" aria-label={t.partners.logosAria}>
-              <div className="partner-logos-track">
-                {[0, 1].map((copy) => (
-                  <div className="partner-logos-set" key={copy} aria-hidden={copy === 1}>
-                    {partnerLogos.map((logo) => (
-                      <img
-                        key={logo.file}
-                        src={`/assets/images/partners/${logo.file}`}
-                        alt={copy === 0 ? logo.name : ""}
-                        style={{ "--logo-h": `${logo.height}px` } as CSSProperties}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <LogoMarquee label={t.partners.logosAria} reverse={isHebrew} />
             <div className="updates-heading scroll-reveal">
               <div>
                 <p className="eyebrow">{t.updates.eyebrow}</p>
