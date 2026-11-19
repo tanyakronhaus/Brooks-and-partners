@@ -369,9 +369,11 @@ const divisionImages = [
 // auto-sized SVGs that have no intrinsic dimensions.
 const partnerLogos = [
   { file: "tubul.svg", name: "Tubul Group", height: 50, ratio: 2.9 },
+  { file: "daniel-developers.png", name: "Daniel Developers", height: 64, ratio: 2.139 },
   { file: "bank-hapoalim.svg", name: "Bank Hapoalim", height: 30, ratio: 5.923 },
   { file: "leumi-partners.svg", name: "Leumi Partners", height: 50, ratio: 3.119 },
   { file: "electra.png", name: "Electra", height: 44, ratio: 4.034 },
+  { file: "vanguard.png", name: "Vanguard", height: 34, ratio: 4.571 },
   { file: "dragosta-energy.png", name: "Dragosta Energy", height: 68, ratio: 2.53 },
   { file: "erm.svg", name: "ERM", height: 38, ratio: 3.241 },
   { file: "mprest.svg", name: "mPrest", height: 46, ratio: 2.889 },
@@ -379,6 +381,7 @@ const partnerLogos = [
   { file: "nawi-group.svg", name: "Nawi Group", height: 38, ratio: 5.346 },
   { file: "reality.svg", name: "Reality", height: 40, ratio: 5.727 },
   { file: "margolin.png", name: "I. Margolin", height: 80, ratio: 1.0 },
+  { file: "gsc.png", name: "GSC", height: 78, ratio: 1 },
   { file: "arnon-tadmor-levy.svg", name: "Arnon, Tadmor-Levy", height: 58, ratio: 3.095 },
   { file: "gilboa-engineers.png", name: "Gilboa Engineers", height: 84, ratio: 1.019 },
   { file: "david-engineers.png", name: "David Engineers", height: 50, ratio: 3.415 },
